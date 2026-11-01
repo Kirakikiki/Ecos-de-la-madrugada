@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cchv43eug6720" path="res://personaje.gd" id="1_pj"]
 [ext_resource type="PackedScene" uid="uid://bkmexfnojlmxi" path="res://personaje/character-male-a.glb" id="2_modelo"]
+[ext_resource type="Script" uid="uid://67g8ul8ywidy" path="res://rodar.gd" id="3_h2yge"]
 
 [sub_resource type="ProceduralSkyMaterial" id="CieloMat"]
 
@@ -86,7 +87,8 @@ transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 
 script = ExtResource("1_pj")
 camara = NodePath("../Camera3D")
 speed_correr = 3.0
-prueba = 5
+prueba = 3
+accion_prueba = "silencio"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Personaje" unique_id=1111135611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
@@ -94,3 +96,6 @@ shape = SubResource("Capsula")
 
 [node name="Modelo" parent="Personaje" unique_id=240979979 instance=ExtResource("2_modelo")]
 transform = Transform3D(-2.6, 0, 0, 0, 2.6, 0, 0, 0, -2.6, 0, 0, 0)
+
+[node name="rodar" type="Node" parent="Personaje" unique_id=857137045]
+script = ExtResource("3_h2yge")
