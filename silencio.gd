@@ -27,10 +27,10 @@ func _physics_process(delta):
 				estado = Estado.LISTA
 				
 func puede():
-	return pj.is_on_floor() #la regla del ejemplo: solo en el suelo
+	return pj.is_on_floor() and not usada #la regla del ejemplo: solo en el suelo
 				
 func nueva_llamada():
-	pj.is_floor = false
+	usada = false
 
 func empezar():
 	estado = Estado.ACTIVA
