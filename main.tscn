@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://h24dlci7t2hg"]
 
+[ext_resource type="Script" uid="uid://cqa56lnn51nt" path="res://objeto_examinable.gd" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://cchv43eug6720" path="res://personaje.gd" id="1_pj"]
 [ext_resource type="PackedScene" uid="uid://bkmexfnojlmxi" path="res://personaje/character-male-a.glb" id="2_modelo"]
 [ext_resource type="Script" uid="uid://67g8ul8ywidy" path="res://rodar.gd" id="3_h2yge"]
@@ -54,6 +55,7 @@ shape = SubResource("PisoForma")
 
 [node name="Caja1" type="StaticBody3D" parent="Cajas" unique_id=832151893 groups=["interactivos"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -4)
+script = ExtResource("1_7mycd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cajas/Caja1" unique_id=1632765414]
 mesh = SubResource("CajaMalla")
@@ -86,9 +88,12 @@ shape = SubResource("CajaForma")
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 5, 7)
 
 [node name="Personaje" type="CharacterBody3D" parent="." unique_id=497052065 node_paths=PackedStringArray("camara")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
 script = ExtResource("1_pj")
 camara = NodePath("../Camera3D")
 speed_correr = 3.0
+prueba = 4
+accion_prueba = "interactuar"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Personaje" unique_id=1111135611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
@@ -106,3 +111,4 @@ script = ExtResource("4_1bvp3")
 [node name="Interactuar" type="Node" parent="Personaje" unique_id=1975657850]
 script = ExtResource("5_lquwl")
 alcance = 2.0
+tiempo_necesario = 2.0
