@@ -1,8 +1,11 @@
 extends CharacterBody3D
 
+enum Estado { QUIETO, CAMINAR, EXAMINANDO }
+const RAPIDEZ_MAX = [0.0, 3.0, 0.0]   # en el orden del enum
+
 @export var camara: Camera3D
 @export var speed_caminar = 3.0
-@export var speed_correr = 6.0
+@export var speed_correr = 3.0
 @export var tiempo_arranque = 0.25
 @onready var anim = $Modelo/AnimationPlayer
 
@@ -11,7 +14,8 @@ var multiplicador = 1.0     # 1 = rapidez normal, 0.5 = la mitad, 0 = quieto
 var empuje = Vector3.ZERO   # velocidad extra en m/s (dash, retroceso)
 var accion = ""             # animación de la acción; "" = ninguna
 var avance = Vector3.ZERO # la parte de la velocidad que dan las teclas
-
+var estado = Estado.QUIETO
+var rapidez_max = 0.0
 
 func _ready():
 	if camara == null:
@@ -29,7 +33,8 @@ func _physics_process(delta):
 	
 	var corre = Input.is_action_pressed("correr")
 	var speed = speed_correr if corre else speed_caminar
-	var objetivo = direction * speed * multiplicador
+	var examinando = estado == Estado.EXAMINANDO
+	var objetivo = Vector3.ZERO if examinando else direction * speed * multiplicador
 	var paso = speed / tiempo_arranque * delta
 	avance = avance.move_toward(objetivo, paso)
 	
@@ -38,18 +43,36 @@ func _physics_process(delta):
 
 	if direction.length() > 0:
 		basis = Basis.looking_at(direction)
-	if accion != "":
-		anim.play(accion)
-	elif avance.length() > speed_caminar + 0.1:
-		anim.play("sprint")
-	elif avance.length() > 0.1:
-		anim.play("walk")
-	else:
-		anim.play("idle")
-
+	
 	move_and_slide()
+	var antes = estado
+	estado = elegir_estado()
+	rapidez_max = RAPIDEZ_MAX[estado]
+	if estado != antes:
+		print("estado ", Estado.keys()[estado], " · rapidez maxima ", rapidez_max, " m")
+	animar()
 	_prueba()
 
+func elegir_estado():
+	if Input.is_action_pressed("examinar"):
+		return Estado.EXAMINANDO
+	var rapidez = Vector2(velocity.x, velocity.z).length()
+	if rapidez < 0.1:
+		return Estado.QUIETO
+	return Estado.CAMINAR
+
+func animar():
+	if accion != "":
+		anim.play(accion)
+		return
+	match estado:
+		Estado.QUIETO:
+			anim.play("idle")
+		Estado.CAMINAR:
+			anim.play("walk")
+		Estado.EXAMINANDO:
+			anim.play("idle")
+	
 
 # ---------------------------------------------------------------------------
 # PRUEBAS AUTOMÁTICAS. No hace falta entender esta parte: en el Inspector del
