@@ -38,7 +38,8 @@ height = 1.75
 [node name="Main" type="Node3D" unique_id=1161744906]
 
 [node name="Guardia" parent="." unique_id=1295591402 node_paths=PackedStringArray("objetivo") instance=ExtResource("1_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
+axis_lock_linear_z = false
 objetivo = NodePath("../Personaje")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=125810565]
@@ -98,9 +99,8 @@ objetivo = NodePath("../Personaje")
 [node name="Personaje" type="CharacterBody3D" parent="." unique_id=497052065 node_paths=PackedStringArray("camara")]
 script = ExtResource("1_pj")
 camara = NodePath("../Camera3D")
-speed_caminar = 2.5
+speed_correr = 3.0
 prueba = 1
-accion_prueba = "interactuar"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Personaje" unique_id=1111135611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
