@@ -86,7 +86,8 @@ transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 
 script = ExtResource("1_pj")
 camara = NodePath("../Camera3D")
 speed_correr = 3.0
-prueba = 5
+prueba = 3
+accion_prueba = "correr"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Personaje" unique_id=1111135611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
