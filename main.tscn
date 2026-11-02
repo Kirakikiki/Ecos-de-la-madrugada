@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://h24dlci7t2hg"]
 
+[ext_resource type="Script" uid="uid://cqa56lnn51nt" path="res://objeto_examinable.gd" id="1_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cjqripveonc8u" path="res://guardia.tscn" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://cchv43eug6720" path="res://personaje.gd" id="1_pj"]
 [ext_resource type="PackedScene" uid="uid://bkmexfnojlmxi" path="res://personaje/character-male-a.glb" id="2_modelo"]
-<<<<<<< Updated upstream
-=======
 [ext_resource type="Script" uid="uid://c4ncpqjuna8wv" path="res://camara_sigue.gd" id="3_5vw27"]
 [ext_resource type="Script" uid="uid://67g8ul8ywidy" path="res://rodar.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://8b06x4tq8ha4" path="res://silencio.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://g76pliv8lo3r" path="res://interactuar.gd" id="5_lquwl"]
->>>>>>> Stashed changes
 
 [sub_resource type="ProceduralSkyMaterial" id="CieloMat"]
 
@@ -38,6 +37,10 @@ height = 1.75
 
 [node name="Main" type="Node3D" unique_id=1161744906]
 
+[node name="Guardia" parent="." unique_id=1295591402 node_paths=PackedStringArray("objetivo") instance=ExtResource("1_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
+objetivo = NodePath("../Personaje")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=125810565]
 environment = SubResource("Entorno")
 
@@ -56,8 +59,9 @@ shape = SubResource("PisoForma")
 
 [node name="Cajas" type="Node3D" parent="." unique_id=519865759]
 
-[node name="Caja1" type="StaticBody3D" parent="Cajas" unique_id=832151893]
+[node name="Caja1" type="StaticBody3D" parent="Cajas" unique_id=832151893 groups=["interactivos"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -4)
+script = ExtResource("1_7mycd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cajas/Caja1" unique_id=1632765414]
 mesh = SubResource("CajaMalla")
@@ -93,15 +97,19 @@ objetivo = NodePath("../Personaje")
 distancia = Vector3(0, 10, 5)
 
 [node name="Personaje" type="CharacterBody3D" parent="." unique_id=497052065 node_paths=PackedStringArray("camara")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
 script = ExtResource("1_pj")
 camara = NodePath("../Camera3D")
-<<<<<<< Updated upstream
+
 speed_caminar = 2.5
 speed_correr = 5.0
-=======
 prueba = 1
 accion_prueba = "interactuar"
->>>>>>> Stashed changes
+
+speed_correr = 3.0
+prueba = 4
+accion_prueba = "interactuar"
+
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Personaje" unique_id=1111135611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
@@ -109,3 +117,14 @@ shape = SubResource("Capsula")
 
 [node name="Modelo" parent="Personaje" unique_id=240979979 instance=ExtResource("2_modelo")]
 transform = Transform3D(-2.6, 0, 0, 0, 2.6, 0, 0, 0, -2.6, 0, 0, 0)
+
+[node name="rodar" type="Node" parent="Personaje" unique_id=857137045]
+script = ExtResource("3_h2yge")
+
+[node name="silencio" type="Node" parent="Personaje" unique_id=477814365]
+script = ExtResource("4_1bvp3")
+
+[node name="Interactuar" type="Node" parent="Personaje" unique_id=1975657850]
+script = ExtResource("5_lquwl")
+alcance = 2.0
+tiempo_necesario = 2.0
