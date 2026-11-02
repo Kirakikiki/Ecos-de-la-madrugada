@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://h24dlci7t2hg"]
 
+[ext_resource type="PackedScene" uid="uid://cjqripveonc8u" path="res://guardia.tscn" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://cchv43eug6720" path="res://personaje.gd" id="1_pj"]
 [ext_resource type="PackedScene" uid="uid://bkmexfnojlmxi" path="res://personaje/character-male-a.glb" id="2_modelo"]
 [ext_resource type="Script" uid="uid://67g8ul8ywidy" path="res://rodar.gd" id="3_h2yge"]
@@ -33,6 +34,10 @@ radius = 0.35
 height = 1.75
 
 [node name="Main" type="Node3D" unique_id=1161744906]
+
+[node name="Guardia" parent="." unique_id=1295591402 node_paths=PackedStringArray("objetivo") instance=ExtResource("1_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
+objetivo = NodePath("../Personaje")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=125810565]
 environment = SubResource("Entorno")
