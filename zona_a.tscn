@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bts8qwxctvwti"]
+
+[ext_resource type="Script" uid="uid://72ytu0thjica" path="res://personaje/sistema_sol.gd" id="1_l7qun"]
+[ext_resource type="Script" uid="uid://cumamnolawmcs" path="res://ciclo_dia.gd" id="2_fntjl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bjhji"]
+
+[sub_resource type="Sky" id="Sky_0pojb"]
+sky_material = SubResource("ProceduralSkyMaterial_bjhji")
+
+[sub_resource type="Environment" id="Environment_6y8px"]
+background_mode = 1
+background_color = Color(0.101960786, 0.1254902, 0.21176471, 1)
+sky = SubResource("Sky_0pojb")
+ambient_light_source = 3
+ambient_light_color = Color(0.101960786, 0.1254902, 0.21176471, 1)
+tonemap_mode = 2
+
+[node name="ZonaA" type="Node3D" unique_id=1353284772]
+
+[node name="Sol" type="DirectionalLight3D" parent="." unique_id=2134449687]
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2034527360]
+environment = SubResource("Environment_6y8px")
+
+[node name="SistemaSol" type="Node" parent="." unique_id=85988715 node_paths=PackedStringArray("sol", "entorno")]
+script = ExtResource("1_l7qun")
+sol = NodePath("../Sol")
+entorno = NodePath("../WorldEnvironment")
+
+[node name="CicloDia" type="Node" parent="SistemaSol" unique_id=241096066]
+script = ExtResource("2_fntjl")
