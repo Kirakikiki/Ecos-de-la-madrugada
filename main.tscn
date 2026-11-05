@@ -35,7 +35,7 @@ albedo_color = Color(0.85, 0.55, 0.25, 1)
 radius = 0.35
 height = 1.75
 
-[node name="Main" type="Node3D" unique_id=1161744906]
+[node name="Exploracion" type="Node3D" unique_id=1161744906]
 
 [node name="Guardia" parent="." unique_id=1295591402 node_paths=PackedStringArray("objetivo") instance=ExtResource("1_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
