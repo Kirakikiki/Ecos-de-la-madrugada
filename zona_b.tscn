@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://biyljgujvggl4"]
+
+[ext_resource type="Script" uid="uid://cqufr8mvybimx" path="res://luz_parpadeante.gd" id="1_pjwgy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_paa24"]
+size = Vector3(10, 0.2, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_r2x4l"]
+data = PackedVector3Array(-5, 0.099999994, 5, 5, 0.099999994, 5, -5, -0.099999994, 5, 5, 0.099999994, 5, 5, -0.099999994, 5, -5, -0.099999994, 5, 5, 0.099999994, -5, -5, 0.099999994, -5, 5, -0.099999994, -5, -5, 0.099999994, -5, -5, -0.099999994, -5, 5, -0.099999994, -5, 5, 0.099999994, 5, 5, 0.099999994, -5, 5, -0.099999994, 5, 5, 0.099999994, -5, 5, -0.099999994, -5, 5, -0.099999994, 5, -5, 0.099999994, -5, -5, 0.099999994, 5, -5, -0.099999994, -5, -5, 0.099999994, 5, -5, -0.099999994, 5, -5, -0.099999994, -5, 5, 0.099999994, 5, -5, 0.099999994, 5, 5, 0.099999994, -5, -5, 0.099999994, 5, -5, 0.099999994, -5, 5, 0.099999994, -5, -5, -0.099999994, 5, 5, -0.099999994, 5, -5, -0.099999994, -5, 5, -0.099999994, 5, 5, -0.099999994, -5, -5, -0.099999994, -5)
+
+[sub_resource type="Environment" id="Environment_paa24"]
+background_color = Color(0.101960786, 0.1254902, 0.21176471, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.050980393, 0.0627451, 0.1254902, 1)
+
+[node name="ZonaB" type="Node3D" unique_id=1330710418]
+
+[node name="Piso" type="MeshInstance3D" parent="." unique_id=1300425356]
+mesh = SubResource("BoxMesh_paa24")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1574554861]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1250329015]
+shape = SubResource("ConcavePolygonShape3D_r2x4l")
+
+[node name="Farola" type="OmniLight3D" parent="." unique_id=819414775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+light_color = Color(0.8901961, 0.60784316, 0.23137255, 1)
+shadow_enabled = true
+omni_range = 8.0
+omni_attenuation = 2.0
+script = ExtResource("1_pjwgy")
+energia_base = 3.0
+velocidad = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=189877639]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, 0, 4, 6)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=380519838]
+environment = SubResource("Environment_paa24")
