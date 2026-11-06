@@ -39,5 +39,21 @@ func aplicar_hora() -> void:
 static func energia_lampara(n: int) -> float:
 	return lerpf(1.0, 0.3, float(n - 1) / 9.0)   # n = llamada 1 a 10
 
+static func lambert(normal: Vector3, hacia_luz: Vector3) -> float:
+	# TODO 1: normalizar los dos vectores
+	var n := Vectores.normalizar(normal)
+	var l := Vectores.normalizar(hacia_luz)
+	# TODO 2: el producto punto
+	var d := n.dot(l)
+	# TODO 3: si da negativo, la luz llega por detrás: devolver 0
+	return maxf(0.0, d)
+
+func prediccion_piso() -> float:
+	# TODO 4: la luz viaja hacia -Z del Sol, así que "hacia la luz" es +Z
+	var hacia_luz := sol.global_transform.basis.z
+	var rojo := sol.light_color.srgb_to_linear().r
+	# TODO 5: energía × canal rojo × Lambert con la normal del piso
+	return sol.light_energy * rojo * lambert(Vector3.UP, hacia_luz)
+	
 func aplicar_lampara(n: int) -> void:
 	lampara.light_energy = energia_lampara(n)
