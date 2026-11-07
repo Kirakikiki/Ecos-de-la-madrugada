@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Juego del equipo (3D)"
-run/main_scene="uid://biyljgujvggl4"
+run/main_scene="uid://h24dlci7t2hg"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
