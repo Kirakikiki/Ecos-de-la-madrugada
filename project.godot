@@ -19,6 +19,15 @@ config/icon="res://icon.svg"
 
 Estado="*uid://ddwxcr41qhogf"
 
+[display]
+
+window/size/viewport_width=344
+window/size/viewport_height=192
+window/size/window_width_override=1356
+window/size/window_height_override=748
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
+
 [dotnet]
 
 project/assembly_name="Juego del equipo (3D)"
@@ -81,5 +90,6 @@ interactuar={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
