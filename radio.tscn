@@ -776,4 +776,5 @@ texture = ExtResource("17_to5w0")
 [node name="Oyente" type="Node" parent="." unique_id=524744493]
 script = ExtResource("18_inxrw")
 ritmo = 3.0
+oculta_algo = false
 lineas = Array[String](["Hola amigo", "como estas?", "espero que bien", "ultimamente han sucedido cosas extrañas por aquí", "Debes tener cuidado", "O no, depende de ti"])
