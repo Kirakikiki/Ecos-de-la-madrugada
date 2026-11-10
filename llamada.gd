@@ -1,10 +1,12 @@
 extends Node
 
-enum Estado { HABLA, CALLADO, CONFIESA, CUELGA }
+enum Estado { HABLA, CALLADO, CONFIESA, ALERTA, CUELGA }
 
 @export var ritmo = 2.0
 @export var tecla = "silencio"
+@export var tecla_resaltar = "resaltar"
 @export var tiempo_silencio = 1.0
+@export var tope_palabras = 2
 @export var oculta_algo = true
 @export var lineas: Array[String] = [
 	"Línea 1", "Línea 2", "Línea 3", "Línea 4", "Línea 5", "Línea 6"]
@@ -17,21 +19,31 @@ var reloj = 0.0
 var silencio = 0.0
 var usado = false
 var resaltables = 0
+var palabras = 0
 
 func _ready():
 	decir()
 
 func _physics_process(delta):
 	reloj -= delta
+	if Input.is_action_just_pressed(tecla_resaltar):
+		palabras += 1
+		print("palabra ", palabras, " de ", tope_palabras)
 	var nuevo = decidir()
 	if nuevo != estado:
 		estado = nuevo
 		print(name, " -> ", Estado.keys()[estado], " cuadro ",
 			Engine.get_physics_frames())
+	var pausa = ritmo
 	match estado:
 		Estado.HABLA:
 			if reloj <= 0.001:
 				decir()
+		Estado.ALERTA:
+			# Alerta habla más rápido: quedan menos palabras por oír.
+			if reloj <= 0.001:
+				decir()
+				reloj = pausa * 0.5
 		Estado.CALLADO:
 			silencio += delta
 			if silencio >= tiempo_silencio - 0.001:
@@ -43,14 +55,18 @@ func _physics_process(delta):
 			pass
 
 func decidir():
-	if estado == Estado.CUELGA or estado == Estado.CONFIESA:
-		if indice >= lineas.size() and reloj <= 0.001:
-			return Estado.CUELGA
+	if estado == Estado.CUELGA:
 		return estado
 	if indice >= lineas.size() and reloj <= 0.001:
 		return Estado.CUELGA
+	if estado == Estado.CONFIESA:
+		return estado
+	if palabras > tope_palabras + 1:
+		return Estado.CUELGA
 	if Input.is_action_pressed(tecla) and not usado:
 		return Estado.CALLADO
+	if palabras > tope_palabras:
+		return Estado.ALERTA
 	return Estado.HABLA
 
 func reaccionar():
