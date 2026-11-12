@@ -1,0 +1,50 @@
+~ llamada_ernesto
+do Estado.cambiar_musica("calma")
+Ernesto: Buenas noches, locutor. Soy Ernesto, el de la panadería de la plaza. Sí, sigo horneando. Alguien tiene que hacerlo.
+Ernesto: Hoy me sobraron cuarenta  [wave][url=panes]panes[/url][/wave]. Siempre me sobran. Hace años que nadie viene a comprarlos.
+- ¿Para quién hornea, entonces?
+	Ernesto: Para los que volverán. Todavía oigo [wave][url=campanas][/wave]campanas[/url] a las seis. Será el viento.
+	=> cierre_ernesto
+- ¿Qué hace con los que sobran?
+	Ernesto: Los dejo en la puerta. Por la mañana ya no están. Nunca he visto quién se los lleva.
+	=> cierre_ernesto
+- (silencio)
+	Ernesto: ¿Hola? ¿Se cortó? …Bueno, no lo molesto más.
+	=> END
+
+~ cierre_ernesto
+Ernesto: Usted siga hablando, que se agradece oír una voz.
+=> END
+
+~ llamada_rosa
+Rosa: Locutor, ¿usted sabe qué hora es? El reloj de la torre marca las tres y doce. Lleva años igual.
+- Son casi las cuatro, señora.
+	Rosa: Gracias, hijo. Aunque aquí la hora no importa. Las cosas pasan cuando quieren.
+	=> cierre_rosa
+- ¿Qué pasó a las 3:12?
+	Rosa: Se fue la luz. Toda. Y cuando volvió, ya faltaban cosas.
+	=> cierre_rosa
+- (silencio)
+	Rosa: …Usted sí sabe escuchar. Esa noche no solo se fue la [wave][url=luz]luz[/url][/wave]. También se fue [wave][url=gente]gente[/url][/wave], y nadie pregunta.
+	Rosa: Yo tampoco pregunté. Eso es lo que me pesa.
+	=> cierre_rosa
+
+~ cierre_rosa
+Rosa: Buenas noches, locutor. Que no se le detenga el reloj.
+=> END
+
+~ llamada_gaspar
+Gaspar: Aquí Gaspar, el de las farolas. Hago mi ronda y las cuento. Anoche eran noventa y cuatro encendidas. Hoy, ochenta y nueve.
+- ¿Se están dañando?
+	Gaspar: No se dañan. Se apagan solas, como si alguien las apagara a propósito. Las reviso todas y ninguna falla.
+	=> cierre_gaspar
+- ¿Cuál se apagó primero?
+	Gaspar: La de la calle de las [wave][url=farolas]Farolas[/url][/wave], la número siete. Y creo que no estaba sola.
+	=> cierre_gaspar
+- (silencio)
+	Gaspar: …Mejor no se lo digo. [wait=2] Está bien. Vi a alguien bajo la siete. Tenía una [wave][url=mano]mano[/url][/wave] levantada, como saludando.
+	=> cierre_gaspar
+
+~ cierre_gaspar
+Gaspar: Buenas noches. Si pasa por ahí, no mire mucho las lámparas. Es un consejo.
+=> END
