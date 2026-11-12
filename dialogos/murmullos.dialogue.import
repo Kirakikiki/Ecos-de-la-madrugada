@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://b83dv51dqxdmo"
+path="res://.godot/imported/murmullos.dialogue-9fbbc679ab0707a23f3b15d1d68a4c50.tres"
+
+[deps]
+
+source_file="res://dialogos/murmullos.dialogue"
+dest_files=["res://.godot/imported/murmullos.dialogue-9fbbc679ab0707a23f3b15d1d68a4c50.tres"]
+
+[params]
+
+defaults=true
