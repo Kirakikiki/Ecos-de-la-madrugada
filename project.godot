@@ -77,7 +77,6 @@ rodar={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194326,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
-
 silencio={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"location":0,"echo":false,"script":null)
@@ -104,7 +103,7 @@ resaltar={
 ]
 }
 
-<[internationalization]
+[internationalization]
 
 locale/translations_pot_files=PackedStringArray("res://dialogos/murmullos.dialogue", "res://dialogos/noche_1.dialogue", "res://dialogos/noche_2.dialogue", "res://dialogos/tutorial.dialogue")
 
