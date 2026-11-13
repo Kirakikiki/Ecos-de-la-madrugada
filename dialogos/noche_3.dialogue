@@ -1,0 +1,55 @@
+# Se continua con la noche 3 que se llamara - Las historias del pueblo 
+
+~ llamada_ernesto
+do Estado.cambiar_musica("calma")
+Ernesto: Anoche encontré barro junto a la puerta de la panadería.
+- ¿Alguien entró?
+	Ernesto: No vi a nadie. Pero las huellas iban hacia el camino viejo.
+	do Estado.marcar_lugar("camino_viejo", "examinable")
+	=> cierre_ernesto
+- ¿Qué llevaba la persona?
+	Ernesto: Una bolsa grande. Pensé que venía por el pan, pero ni siquiera tocó la puerta.
+	do Estado.agregar_pista("bolsa_grande")
+	=> cierre_ernesto
+- (silencio)
+	Ernesto: …Ya sé, ya sé. Lo cuento todo con rodeos.
+	=> cierre_ernesto
+~ cierre_ernesto
+Ernesto: Hay cosas que uno prefiere no ver. Aunque después vuelven en los sueños.
+=> END
+
+~ llamada_rosa
+Rosa: Encontré una fotografía vieja de la noche del apagón.
+- ¿Qué aparece en ella?
+	Rosa: La calle de la torre. Al fondo se ve una persona junto a una casa abandonada.
+	do Estado.agregar_pista("foto_apagon")
+	=> cierre_rosa
+- ¿Reconoce a esa persona?
+	Rosa: No con seguridad. La fotografía está dañada.
+	=> cierre_rosa
+- (silencio)
+	Rosa: Le dejaré la foto en la mesa del fondo. Para que la mire cuando pueda.
+	do Estado.agregar_pista("foto_apagon")
+	=> cierre_rosa
+~ cierre_rosa
+Rosa: La gente cree que el tiempo borra las cosas. A veces solo las esconde.
+=> END
+
+~ llamada_marta
+do Estado.cambiar_musica("tension")
+Marta: ¿Ha sabido algo de mi hijo?
+- ¿Ha hablado con sus amigos?
+	Marta: Con algunos. Nadie lo ha visto. Es extraño… él siempre avisa.
+	=> cierre_marta
+- ¿Hay algún lugar al que suela ir?
+	Marta: No. Bueno… hay una casa vieja, pero hace años que no vamos por allí.
+	do Estado.marcar_lugar("casa_vieja", "examinable")
+	do Estado.agregar_pista("marta_casa_vieja")
+	=> cierre_marta
+- (silencio)
+	Marta: ¿Hola? …Perdone, me pongo nerviosa cuando no contestan.
+	do Estado.cambiar_credibilidad(-1)
+	=> cierre_marta
+~ cierre_marta
+Marta: Si escucha algo, no espere hasta mañana. Se lo suplico.
+=> END

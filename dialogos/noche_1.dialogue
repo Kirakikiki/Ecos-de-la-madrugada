@@ -1,17 +1,21 @@
+# La noche 1 con las primeras llamadas 
+# Orden que va hacer en esta llamada son: Ernesto - Rosa - Gaspar - Marta - niño
+
 ~ llamada_ernesto
 do Estado.cambiar_musica("calma")
 Ernesto: Buenas noches, locutor. Soy Ernesto, el de la panadería de la plaza. Sí, sigo horneando. Alguien tiene que hacerlo.
-Ernesto: Hoy me sobraron cuarenta  [wave][url=panes]panes[/url][/wave]. Siempre me sobran. Hace años que nadie viene a comprarlos.
+Ernesto: Hoy me sobraron cuarenta [wave][url=panes]panes[/url][/wave]. Siempre me sobran. Hace años que nadie viene a comprarlos.
 - ¿Para quién hornea, entonces?
-	Ernesto: Para los que volverán. Todavía oigo [wave][url=campanas][/wave]campanas[/url] a las seis. Será el viento.
+	Ernesto: Para los que volverán. Todavía oigo [wave][url=campanas]campanas[/url][/wave] a las seis. Será el viento.
 	=> cierre_ernesto
 - ¿Qué hace con los que sobran?
 	Ernesto: Los dejo en la puerta. Por la mañana ya no están. Nunca he visto quién se los lleva.
+	do Estado.agregar_pista("panes_desaparecidos")
 	=> cierre_ernesto
 - (silencio)
 	Ernesto: ¿Hola? ¿Se cortó? …Bueno, no lo molesto más.
+	do Estado.cambiar_credibilidad(-1)
 	=> END
-
 ~ cierre_ernesto
 Ernesto: Usted siga hablando, que se agradece oír una voz.
 => END
@@ -23,12 +27,13 @@ Rosa: Locutor, ¿usted sabe qué hora es? El reloj de la torre marca las tres y 
 	=> cierre_rosa
 - ¿Qué pasó a las 3:12?
 	Rosa: Se fue la luz. Toda. Y cuando volvió, ya faltaban cosas.
+	do Estado.agregar_pista("reloj_3_12")
 	=> cierre_rosa
 - (silencio)
 	Rosa: …Usted sí sabe escuchar. Esa noche no solo se fue la [wave][url=luz]luz[/url][/wave]. También se fue [wave][url=gente]gente[/url][/wave], y nadie pregunta.
 	Rosa: Yo tampoco pregunté. Eso es lo que me pesa.
+	do Estado.agregar_pista("reloj_3_12")
 	=> cierre_rosa
-
 ~ cierre_rosa
 Rosa: Buenas noches, locutor. Que no se le detenga el reloj.
 => END
@@ -40,11 +45,71 @@ Gaspar: Aquí Gaspar, el de las farolas. Hago mi ronda y las cuento. Anoche eran
 	=> cierre_gaspar
 - ¿Cuál se apagó primero?
 	Gaspar: La de la calle de las [wave][url=farolas]Farolas[/url][/wave], la número siete. Y creo que no estaba sola.
+	do Estado.marcar_lugar("farola_7", "examinable")
 	=> cierre_gaspar
 - (silencio)
 	Gaspar: …Mejor no se lo digo. [wait=2] Está bien. Vi a alguien bajo la siete. Tenía una [wave][url=mano]mano[/url][/wave] levantada, como saludando.
+	do Estado.marcar_lugar("farola_7", "examinable")
+	do Estado.agregar_pista("figura_farola_7")
 	=> cierre_gaspar
-
 ~ cierre_gaspar
 Gaspar: Buenas noches. Si pasa por ahí, no mire mucho las lámparas. Es un consejo.
 => END
+
+~ llamada_marta
+do Estado.cambiar_musica("calma")
+Marta: ¿Buenas noches? ¿La emisora sigue recibiendo llamadas?
+Marta: Soy Marta. Estoy buscando a mi hijo. No volvió a casa.
+- ¿Desde cuándo no sabe de él?
+	Marta: Desde esta tarde. Pensé que estaría con algún amigo, pero ya es muy tarde.
+	=> cierre_marta
+- ¿Ha avisado a alguien?
+	Marta: No quería preocupar a nadie sin estar segura. Pero ya no sé qué pensar.
+	do Estado.agregar_pista("marta_no_aviso")
+	=> cierre_marta
+- ¿Cómo se llama su hijo?
+	Marta: Prefiero no decirlo por la radio. Si alguien sabe algo, dígale que su madre lo está esperando.
+	do Estado.agregar_pista("marta_oculta_nombre")
+	=> cierre_marta
+- (silencio)
+	Marta: ¿Sigue ahí? Disculpe… no he dormido nada.
+	do Estado.cambiar_credibilidad(-1)
+	=> cierre_marta
+~ cierre_marta
+Marta: Gracias por escucharme. Si recibe alguna noticia, por favor, avíseme.
+=> END
+
+~ llamada_nino
+do Estado.cambiar_musica("tension")
+do Estado.estatica(0.7)
+Niño: ¿Hola...? ¿Hay alguien?
+- Sí, te escucho. ¿Quién eres?
+	Niño: No puedo decir mi nombre. Estoy escondido.
+	do Estado.cambiar_confianza_nino(1)
+	=> nino_pasos
+- ¿Dónde estás?
+	Niño: No lo sé… Está oscuro. Hay una ventana pequeña.
+	do Estado.agregar_pista("ventana_pequena")
+	=> nino_pasos
+- ¿Estás en peligro?
+	Niño: Sí. Hay un hombre aquí. No quiero que me encuentre.
+	do Estado.cambiar_confianza_nino(1)
+	=> nino_pasos
+- Dime tu nombre. Ahora.
+	Niño: …No. No puedo. Me va a oír.
+	do Estado.cambiar_confianza_nino(-1)
+	do Estado.cortar_llamada()
+	=> END
+- (silencio)
+	Niño: …¿Sigue ahí? Respira muy bajito, por favor.
+	do Estado.cambiar_confianza_nino(-1)
+	=> nino_pasos
+~ nino_pasos
+Niño: Espera… [wait=2] Escuché pasos.
+Niño: Tengo que esconder el teléfono. No cuelgue…
+=> END
+
+
+
+
+
