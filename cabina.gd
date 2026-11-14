@@ -51,9 +51,18 @@ func transmitir():
 		DialogueManager.show_dialogue_balloon(recurso, "llamada_" + oyente)
 		await DialogueManager.dialogue_ended
 	print("Fin de la transmisión")
+	await terminar_noche(recurso)
+	
+func terminar_noche(recurso):
+	if Estado.noche >= 6:
+		DialogueManager.show_dialogue_balloon(recurso, "resolver_final")
+		await DialogueManager.dialogue_ended
+		return
+	get_tree().change_scene_to_file("res://investigacion.tscn")
 	
 # Aquí: pasar a la investigación, y luego Estado.siguiente_noche()
-
+	
 func _on_musica(nombre):
 	$Musica.stream = load("res://audio/%s.ogg" % nombre)
 	$Musica.play()
+	

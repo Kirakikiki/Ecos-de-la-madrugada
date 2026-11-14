@@ -22,7 +22,7 @@ const ORDEN = {
 	3: ["ernesto", "rosa", "marta"],
 	4: ["nino", "gaspar"],
 	5: ["marta", "nino"],
-	6: ["marta", "nino"]
+	6: ["final_marta", "final_nino"]
 }
 
 func siguiente_noche():
@@ -67,3 +67,7 @@ func guardar_palabra(palabra: String):
 
 func tiene_palabra(palabra: String) -> bool:
 	return palabra in diario
+
+func terminar_investigacion():
+	siguiente_noche()
+	get_tree().change_scene_to_file("res://radio.tscn") 
