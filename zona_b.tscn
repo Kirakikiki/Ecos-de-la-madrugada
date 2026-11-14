@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://biyljgujvggl4"]
+
+[ext_resource type="Script" uid="uid://cqufr8mvybimx" path="res://luz_parpadeante.gd" id="1_pjwgy"]
+[ext_resource type="Script" uid="uid://c75387v46xe0m" path="res://disparador.gd" id="2_7ursy"]
+[ext_resource type="PackedScene" uid="uid://bss3wrijjf7fg" path="res://personaje.tscn" id="3_dbxaw"]
+[ext_resource type="Script" uid="uid://c154hkgugem0" path="res://SistemaEventos.gd" id="4_kbk0x"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_paa24"]
+size = Vector3(10, 0.2, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_r2x4l"]
+data = PackedVector3Array(-5, 0.099999994, 5, 5, 0.099999994, 5, -5, -0.099999994, 5, 5, 0.099999994, 5, 5, -0.099999994, 5, -5, -0.099999994, 5, 5, 0.099999994, -5, -5, 0.099999994, -5, 5, -0.099999994, -5, -5, 0.099999994, -5, -5, -0.099999994, -5, 5, -0.099999994, -5, 5, 0.099999994, 5, 5, 0.099999994, -5, 5, -0.099999994, 5, 5, 0.099999994, -5, 5, -0.099999994, -5, 5, -0.099999994, 5, -5, 0.099999994, -5, -5, 0.099999994, 5, -5, -0.099999994, -5, -5, 0.099999994, 5, -5, -0.099999994, 5, -5, -0.099999994, -5, 5, 0.099999994, 5, -5, 0.099999994, 5, 5, 0.099999994, -5, -5, 0.099999994, 5, -5, 0.099999994, -5, 5, 0.099999994, -5, -5, -0.099999994, 5, 5, -0.099999994, 5, -5, -0.099999994, -5, 5, -0.099999994, 5, 5, -0.099999994, -5, -5, -0.099999994, -5)
+
+[sub_resource type="Environment" id="Environment_paa24"]
+background_color = Color(0.101960786, 0.1254902, 0.21176471, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.050980393, 0.0627451, 0.1254902, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_paa24"]
+
+[node name="ZonaB" type="Node3D" unique_id=1330710418]
+
+[node name="Piso" type="MeshInstance3D" parent="." unique_id=1300425356]
+mesh = SubResource("BoxMesh_paa24")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1574554861]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1250329015]
+shape = SubResource("ConcavePolygonShape3D_r2x4l")
+
+[node name="Farola" type="OmniLight3D" parent="." unique_id=819414775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+light_color = Color(0.8901961, 0.60784316, 0.23137255, 1)
+shadow_enabled = true
+omni_range = 8.0
+omni_attenuation = 2.0
+script = ExtResource("1_pjwgy")
+energia_base = 3.0
+velocidad = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=189877639]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 4, 6)
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=380519838]
+environment = SubResource("Environment_paa24")
+
+[node name="Disparador" type="Area3D" parent="." unique_id=524850892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0)
+collision_mask = 9
+script = ExtResource("2_7ursy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Disparador" unique_id=2082448365]
+shape = SubResource("BoxShape3D_paa24")
+
+[node name="Personaje" parent="." unique_id=878187064 node_paths=PackedStringArray("camara") instance=ExtResource("3_dbxaw")]
+camara = NodePath("../Camera3D")
+
+[node name="LuzEvento" type="OmniLight3D" parent="." unique_id=1303152550]
+light_color = Color(0.8901961, 0.60784316, 0.23137255, 1)
+light_energy = 0.0
+omni_range = 4.0
+omni_attenuation = 2.0
+
+[node name="SistemaEventos" type="Node" parent="." unique_id=723195991 node_paths=PackedStringArray("luz_variable", "luz_evento")]
+script = ExtResource("4_kbk0x")
+luz_variable = NodePath("../LuzPA")
+luz_evento = NodePath("../LuzEvento")
+
+[node name="LuzPA" type="OmniLight3D" parent="." unique_id=2023933327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+omni_range = 8.0
+omni_attenuation = 2.0

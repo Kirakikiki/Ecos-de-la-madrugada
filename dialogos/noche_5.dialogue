@@ -1,0 +1,55 @@
+# Noche quinta y se despiertan nuevas curiosidades y se habren las contradicciones de marta 
+
+~ llamada_marta
+do Estado.cambiar_musica("tension")
+Marta: Me dijeron que está haciendo preguntas sobre la casa vieja.
+- Usted dijo que hacía años que no iba allí.
+	Marta: Y es verdad. No entiendo por qué insiste.
+	do Estado.agregar_pista("marta_contradice")
+	=> marta_confrontacion
+- El niño describió una marca que coincide con esa casa.
+	Marta: Hay muchas casas con marcas antiguas. No puede acusarme por eso.
+	=> marta_confrontacion
+- ¿Su hijo conoce ese lugar?
+	Marta: …Lo conocía cuando era pequeño. Eso no significa nada.
+	do Estado.agregar_pista("hijo_conoce_casa")
+	=> marta_confrontacion
+- (silencio)
+	Marta: ¿No va a decir nada? …Entonces ya lo sabe.
+	do Estado.agregar_pista("marta_se_delata")
+	=> marta_confrontacion
+~ marta_confrontacion
+Marta: Usted no sabe lo que ha pasado en esta familia.
+Marta: Mi hijo no es una mala persona. Solo… ha cometido errores.
+- ¿Qué clase de errores?
+	Marta: No voy a hablar de eso por teléfono.
+	=> marta_fin
+- ¿Está intentando protegerlo?
+	Marta: ¡No! Estoy intentando encontrarlo.
+	do Estado.cambiar_credibilidad(1)
+	=> marta_fin
+~ marta_fin
+Marta: No vuelva a llamar a esa casa.
+do Estado.marta_confrontada = true
+=> END
+
+~ llamada_nino
+do Estado.cambiar_musica("tension")
+do Estado.estatica(0.9)
+Niño: Ya sé quién era.
+- ¿Quién te llevó?
+	Niño: El hijo de la señora que vino a la radio. La que preguntaba por su hijo.
+	do Estado.agregar_pista("hijo_de_marta")
+	=> nino_confirma
+- ¿Estás seguro?
+	Niño: Escuché que ella lo llamó por su nombre. Él le dijo que no debía hablar conmigo.
+	do Estado.agregar_pista("hijo_de_marta")
+	=> nino_confirma
+- (silencio)
+	Niño: …Por favor, no me deje solo ahora.
+	do Estado.cambiar_confianza_nino(-1)
+	=> nino_confirma
+~ nino_confirma
+Niño: Creo que ella sabe dónde estoy.
+Niño: Por favor, no deje que vuelva.
+=> END

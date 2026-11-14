@@ -1,0 +1,71 @@
+# Ultima noche, la verdad sale a la luz, denominado como la ultima trasminsion 
+
+~ llamada_final_marta
+do Estado.cambiar_musica("amenaza")
+Marta: No llame a nadie. Puedo explicarlo.
+- Su hijo tiene al niño.
+	Marta: Yo no quería que llegara tan lejos. Solo quería evitar que todo se destruyera.
+	=> marta_final
+- ¿Por qué lo protegió?
+	Marta: Porque es mi hijo. Pensé que podía detenerlo antes de que alguien saliera herido.
+	=> marta_final
+- (silencio)
+	Marta: …Entonces escuche. Solo escuche.
+	=> marta_final
+~ marta_final
+Marta: Si todavía hay tiempo, búsquelo detrás de la casa. Hay una entrada que da al sótano.
+do Estado.marcar_lugar("sotano_casa_vieja", "examinable")
+=> END
+
+~ llamada_final_nino
+do Estado.cambiar_musica("tension")
+do Estado.estatica(1.0)
+Niño: ¿Sigue ahí? Ya no puedo esperar mucho.
+- Vamos a buscarte. Necesito que te alejes de la puerta.
+	Niño: Hay una ventana pequeña. Puedo intentar abrirla.
+	do Estado.avisar_autoridades()
+	=> final_decision
+- ¿Puedes decirme si estás herido?
+	Niño: Me duele el brazo, pero puedo caminar.
+	=> final_decision
+- (silencio)
+	Niño: …¿Hola? ¿Hola?
+	do Estado.cortar_llamada()
+	do Estado.cambiar_confianza_nino(-2)
+	=> resolver_final
+~ final_decision
+Niño: Escucho sirenas… ¿son ustedes?
+=> resolver_final
+~ resolver_final
+if Estado.confianza_nino <= 0 and not Estado.autoridades_avisadas
+	=> final_4_ultima_llamada
+elif Estado.marta_confrontada and not Estado.autoridades_avisadas
+	=> final_3_huida
+elif Estado.pistas >= 8 and Estado.autoridades_avisadas
+	=> final_1_rescate
+else
+	=> final_2_tarde
+~ final_1_rescate
+Narrador: Las sirenas llegaron a tiempo. El niño salió por la ventana pequeña y corrió hacia las luces.
+Narrador: El hijo de Marta fue detenido esa misma madrugada. Marta no volvió a llamar.
+do Estado.terminar_juego("rescate")
+=> END
+
+~ final_2_tarde
+Narrador: Encontraron al niño en el sótano, vivo pero herido. Tardaron demasiado en entender las pistas.
+Narrador: Cuando la verdad salió a la luz, ya era de día en el pueblo.
+do Estado.terminar_juego("demasiado_tarde")
+=> END
+
+~ final_3_huida
+Narrador: Marta esperó a que usted colgara. Esa noche la casa vieja quedó vacía.
+Narrador: El caso sigue abierto. Algunas luces del pueblo siguen apagándose.
+do Estado.terminar_juego("huida")
+=> END
+
+~ final_4_ultima_llamada
+Niño: …Usted no contestó.
+Niño: Yo seguí llamando. Hasta que ya no hubo nadie.
+do Estado.terminar_juego("silencio")
+=> END
+
