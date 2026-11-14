@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://b0yy2v8nx5p7a"
+path="res://.godot/imported/noche_2.dialogue-e468d3cd5fd3735688beb31126c50cff.tres"
+
+[deps]
+
+source_file="res://dialogos/noche_2.dialogue"
+dest_files=["res://.godot/imported/noche_2.dialogue-e468d3cd5fd3735688beb31126c50cff.tres"]
+
+[params]
+
+defaults=true

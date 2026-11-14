@@ -1,0 +1,59 @@
+# Esta es la noche 2 se le denomina como - La voz escondida
+
+~ llamada_nino
+do Estado.cambiar_musica("tension")
+do Estado.estatica(0.7)
+Niño: ¿Es usted? El de la radio…
+- Sí. ¿Pudiste descansar?
+	Niño: No. Él camina de un lado a otro. A veces se queda quieto frente a la puerta.
+	do Estado.cambiar_confianza_nino(1)
+	=> nino_detalles
+- Necesito que me digas dónde estás.
+	Niño: Hay olor a humedad. Y una escalera que cruje. Creo que estoy debajo de una casa.
+	do Estado.agregar_pista("humedad_escalera")
+	=> nino_detalles
+- ¿Quién te llevó allí?
+	Niño: No quiero decirlo. Si lo digo, va a saber que hablé.
+	do Estado.cambiar_confianza_nino(-1)
+	=> nino_detalles
+- (silencio)
+	Niño: …¿Se fue? [wait=2] No se vaya, por favor.
+	do Estado.cambiar_confianza_nino(-1)
+	=> nino_detalles
+	
+~ nino_detalles
+Niño: Vi una luz por debajo de la puerta. Después escuché que arrastraban algo.
+Niño: No era una caja… creo que era algo mucho más pesado.
+- ¿Viste la cara de ese hombre?
+	Niño: Solo su sombra. Era alto. Llevaba algo en una mano.
+	do Estado.agregar_pista("sombra_alta")
+	=> nino_final
+- ¿Puedes salir?
+	Niño: La puerta está cerrada. Y la ventana es muy pequeña.
+	do Estado.agregar_pista("puerta_cerrada")
+	=> nino_final
+- Escóndete y guarda el teléfono.
+	Niño: Sí… eso voy a hacer.
+	do Estado.cambiar_confianza_nino(1)
+	=> nino_final
+~ nino_final
+Niño: Viene otra vez. Si vuelvo a llamar, ¿va a contestar?
+=> END
+
+~ llamada_gaspar
+do Estado.cambiar_musica("calma")
+Gaspar: Anoche volví a revisar la farola siete.
+- ¿Encontró algo?
+	Gaspar: Una marca en el poste. Como si alguien hubiera apoyado una herramienta metálica.
+	do Estado.agregar_pista("marca_poste")
+	=> cierre_gaspar
+- ¿Volvió a ver a la figura?
+	Gaspar: No. Pero escuché pasos cuando todas las luces se apagaron.
+	=> cierre_gaspar
+- (silencio)
+	Gaspar: …Disculpe, estoy nervioso. Nunca hablo tanto.
+	do Estado.cambiar_credibilidad(-1)
+	=> cierre_gaspar
+~ cierre_gaspar
+Gaspar: No me gusta esa calle. Algo está haciendo que las luces fallen justo cuando alguien pasa.
+=> END
