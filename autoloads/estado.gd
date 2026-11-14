@@ -19,7 +19,10 @@ var tutorial_visto = false
 const ORDEN = {
 	1: ["ernesto", "rosa", "gaspar", "marta", "nino"],
 	2: ["nino", "gaspar"],
-	3: ["ernesto", "rosa", "marta"]
+	3: ["ernesto", "rosa", "marta"],
+	4: ["nino", "gaspar"],
+	5: ["marta", "nino"],
+	6: ["marta", "nino"]
 }
 
 func siguiente_noche():

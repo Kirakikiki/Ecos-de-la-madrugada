@@ -105,7 +105,7 @@ resaltar={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogos/murmullos.dialogue", "res://dialogos/noche_1.dialogue", "res://dialogos/noche_2.dialogue", "res://dialogos/tutorial.dialogue", "res://dialogos/noche_3.dialogue", "res://dialogos/noche_4.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogos/murmullos.dialogue", "res://dialogos/noche_1.dialogue", "res://dialogos/noche_2.dialogue", "res://dialogos/tutorial.dialogue", "res://dialogos/noche_3.dialogue", "res://dialogos/noche_4.dialogue", "res://dialogos/noche_5.dialogue", "res://dialogos/noche_6.dialogue")
 
 [physics]
 
