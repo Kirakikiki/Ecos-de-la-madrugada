@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bss3wrijjf7fg"]
+
+[ext_resource type="Script" uid="uid://cchv43eug6720" path="res://personaje.gd" id="1_ck3sb"]
+[ext_resource type="PackedScene" uid="uid://bkmexfnojlmxi" path="res://personaje/character-male-a.glb" id="2_cx4ix"]
+[ext_resource type="Script" uid="uid://67g8ul8ywidy" path="res://rodar.gd" id="3_35kqm"]
+[ext_resource type="Script" uid="uid://8b06x4tq8ha4" path="res://silencio.gd" id="4_1y5k2"]
+[ext_resource type="Script" uid="uid://g76pliv8lo3r" path="res://interactuar.gd" id="5_f8plh"]
+
+[sub_resource type="CapsuleShape3D" id="Capsula"]
+radius = 0.35
+height = 1.75
+
+[node name="Personaje" type="CharacterBody3D" unique_id=878187064 node_paths=PackedStringArray("camara")]
+script = ExtResource("1_ck3sb")
+camara = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1453933830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+shape = SubResource("Capsula")
+
+[node name="Modelo" parent="." unique_id=2100638163 instance=ExtResource("2_cx4ix")]
+transform = Transform3D(-2.6, 0, 0, 0, 2.6, 0, 0, 0, -2.6, 0, 0, 0)
+
+[node name="rodar" type="Node" parent="." unique_id=107758675]
+script = ExtResource("3_35kqm")
+
+[node name="silencio" type="Node" parent="." unique_id=986064478]
+script = ExtResource("4_1y5k2")
+
+[node name="Interactuar" type="Node" parent="." unique_id=1272126050]
+script = ExtResource("5_f8plh")
+alcance = 2.0
+tiempo_necesario = 2.0
