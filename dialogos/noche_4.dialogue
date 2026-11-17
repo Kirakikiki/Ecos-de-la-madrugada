@@ -1,0 +1,49 @@
+# La cuarta noche denominada como - La luz que falta 
+
+~ llamada_nino
+do Estado.cambiar_musica("tension")
+do Estado.estatica(0.8)
+Niño: Pude mirar por una rendija.
+- ¿Qué viste?
+	Niño: Una puerta con una marca… como una estrella torcida. Creo que ya la había visto antes.
+	do Estado.agregar_pista("estrella_torcida")
+	=> nino_recuerdo
+- ¿Reconociste al hombre?
+	Niño: No le vi bien la cara. Pero llevaba un llavero que sonaba al caminar.
+	do Estado.agregar_pista("llavero")
+	=> nino_recuerdo
+- (silencio)
+	Niño: …Me da miedo hablar. Pero quiero contarle.
+	do Estado.cambiar_confianza_nino(-1)
+	=> nino_recuerdo
+~ nino_recuerdo
+Niño: Antes de traerme aquí, vi a alguien discutiendo en la calle.
+Niño: Había otra persona en el suelo. No se movía.
+- ¿Estás seguro de lo que viste?
+	Niño: Sí. Después él me miró. Creo que por eso me trajo.
+	do Estado.agregar_pista("testigo_crimen")
+	=> nino_fin
+- No tienes que contarlo todo ahora.
+	Niño: Gracias… tengo mucho miedo.
+	do Estado.cambiar_confianza_nino(1)
+	=> nino_fin
+~ nino_fin
+Niño: Si escuchas tres golpes, significa que está cerca.
+=> END
+
+~ llamada_gaspar
+do Estado.cambiar_musica("calma")
+Gaspar: La farola siete volvió a apagarse. Esta vez me quedé escondido.
+- ¿Qué vio?
+	Gaspar: Un hombre alto. Se detuvo debajo de la luz y miró hacia la torre.
+	do Estado.agregar_pista("hombre_alto_farola")
+	=> cierre_gaspar
+- ¿Pudo reconocerlo?
+	Gaspar: No. Pero caminaba como alguien que conoce muy bien esa calle.
+	=> cierre_gaspar
+- (silencio)
+	Gaspar: …No pude dormir pensando en eso. Por eso llamo.
+	=> cierre_gaspar
+~ cierre_gaspar
+Gaspar: No voy a volver a hacer esa ronda solo.
+=> END
