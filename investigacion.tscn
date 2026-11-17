@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bkhwn8uimuo2q"]
 
+[ext_resource type="Script" uid="uid://cuqjm4cimaruf" path="res://investigacion.gd" id="1_3njq2"]
 [ext_resource type="Texture2D" uid="uid://cqsj237y8lcjy" path="res://assets/investigacion/[4K Wallpaper] Minimalist Pixel Art City at Night.jpg" id="1_lknpf"]
 [ext_resource type="Texture2D" uid="uid://dglw8h1eongro" path="res://assets/investigacion/craftpix-net-942642-free-urban-shooter-top-down-pixel-art-mini-game-kit/City_Tileset/Tile.png" id="2_kaqpl"]
 [ext_resource type="Texture2D" uid="uid://tepl0bcbip5b" path="res://assets/investigacion/craftpix-net-942642-free-urban-shooter-top-down-pixel-art-mini-game-kit/City_Tileset/Objects/1.png" id="3_j1pe8"]
@@ -1483,6 +1484,7 @@ sources/34 = SubResource("TileSetAtlasSource_51vnc")
 sources/35 = SubResource("TileSetAtlasSource_ct58e")
 
 [node name="Investigacion" type="Node2D" unique_id=418570890]
+script = ExtResource("1_3njq2")
 
 [node name="TilemapLayers" type="Node2D" parent="." unique_id=1887584572]
 
@@ -1511,3 +1513,10 @@ tile_map_data = PackedByteArray("AAAJAPv/AAAAAAAAAAAJAPz/AAAAAAEAAAAKAPv/AAABAAA
 tile_set = SubResource("TileSet_0i4k6")
 
 [node name="Muebles" type="Node2D" parent="." unique_id=1113918458]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2001470865]
+
+[node name="BotonVolver" type="Button" parent="CanvasLayer" unique_id=355715125]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Volver a la cabina"
