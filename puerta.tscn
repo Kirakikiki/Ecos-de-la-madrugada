@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://iv5mfnpky5mi"]
+
+[ext_resource type="Script" uid="uid://b4pl05jj016jq" path="res://puerta.gd" id="1_bek8y"]
+
+[node name="Puerta" type="Area2D" unique_id=603422953]
+script = ExtResource("1_bek8y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2033408329]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1813048982]
+
+[node name="Label" type="Label" parent="." unique_id=1279742960]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "E: entrar"

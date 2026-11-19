@@ -4,6 +4,7 @@ signal musica_cambio(nombre)
 signal estatica_cambio(intensidad)
 signal llamada_cortada
 signal juego_terminado(final)
+signal pa_cambio(valor)
 
 var noche = 1
 var diario: Array[String] = []
@@ -14,7 +15,16 @@ var lugares: Dictionary = {}
 var autoridades_avisadas: bool = false
 var marta_confrontada: bool = false
 var tutorial_visto = false
+const PA_MAXIMO = 3
+var pa = PA_MAXIMO
 
+func gastar_pa(n):
+	pa -= n
+	pa_cambio.emit(pa)
+
+func reiniciar_pa():
+	pa = PA_MAXIMO
+	pa_cambio.emit(pa)
 
 const ORDEN = {
 	1: ["ernesto", "rosa", "gaspar", "marta", "nino"],
@@ -69,5 +79,6 @@ func tiene_palabra(palabra: String) -> bool:
 	return palabra in diario
 
 func terminar_investigacion():
+	reiniciar_pa()
 	siguiente_noche()
 	get_tree().change_scene_to_file("res://radio.tscn") 
