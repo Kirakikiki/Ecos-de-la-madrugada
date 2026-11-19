@@ -6,6 +6,7 @@ do Estado.cambiar_musica("calma")
 Ernesto: Buenas noches, locutor. Soy Ernesto, el de la panadería de la plaza. Sí, sigo horneando. Alguien tiene que hacerlo.
 Ernesto: Hoy me sobraron cuarenta [wave][url=panes]panes[/url][/wave]. Siempre me sobran. Hace años que nadie viene a comprarlos.
 - ¿Para quién hornea, entonces?
+	do Estado.reproducir_efecto("campanas", -8.0)
 	Ernesto: Para los que volverán. Todavía oigo [wave][url=campanas]campanas[/url][/wave] a las seis. Será el viento.
 	=> cierre_ernesto
 - ¿Qué hace con los que sobran?
@@ -21,11 +22,14 @@ Ernesto: Usted siga hablando, que se agradece oír una voz.
 => END
 
 ~ llamada_rosa
+do Estado.reproducir_efecto("reloj", -12.0)
 Rosa: Locutor, ¿usted sabe qué hora es? El reloj de la torre marca las tres y doce. Lleva años igual.
 - Son casi las cuatro, señora.
 	Rosa: Gracias, hijo. Aunque aquí la hora no importa. Las cosas pasan cuando quieren.
 	=> cierre_rosa
 - ¿Qué pasó a las 3:12?
+	do Estado.detener_efecto("reloj")
+	do Estado.reproducir_efecto("apagado", -5.0)
 	Rosa: Se fue la luz. Toda. Y cuando volvió, ya faltaban cosas.
 	do Estado.agregar_pista("reloj_3_12")
 	=> cierre_rosa
@@ -35,12 +39,14 @@ Rosa: Locutor, ¿usted sabe qué hora es? El reloj de la torre marca las tres y 
 	do Estado.agregar_pista("reloj_3_12")
 	=> cierre_rosa
 ~ cierre_rosa
+do Estado.detener_efecto("reloj")
 Rosa: Buenas noches, locutor. Que no se le detenga el reloj.
 => END
 
 ~ llamada_gaspar
 Gaspar: Aquí Gaspar, el de las farolas. Hago mi ronda y las cuento. Anoche eran noventa y cuatro encendidas. Hoy, ochenta y nueve.
 - ¿Se están dañando?
+	do Estado.reproducir_efecto("farola", -8.0)
 	Gaspar: No se dañan. Se apagan solas, como si alguien las apagara a propósito. Las reviso todas y ninguna falla.
 	=> cierre_gaspar
 - ¿Cuál se apagó primero?
@@ -48,7 +54,9 @@ Gaspar: Aquí Gaspar, el de las farolas. Hago mi ronda y las cuento. Anoche eran
 	do Estado.marcar_lugar("farola_7", "examinable")
 	=> cierre_gaspar
 - (silencio)
-	Gaspar: …Mejor no se lo digo. [wait=2] Está bien. Vi a alguien bajo la siete. Tenía una [wave][url=mano]mano[/url][/wave] levantada, como saludando.
+	Gaspar: …Mejor no se lo digo. [wait=2] 
+	do Estado.marcar_lugar("farola_7", "examinable")
+	Gaspar: Está bien. Vi a alguien bajo la siete. Tenía una [wave][url=mano]mano[/url][/wave] levantada, como saludando.
 	do Estado.marcar_lugar("farola_7", "examinable")
 	do Estado.agregar_pista("figura_farola_7")
 	=> cierre_gaspar
@@ -72,6 +80,7 @@ Marta: Soy Marta. Estoy buscando a mi hijo. No volvió a casa.
 	do Estado.agregar_pista("marta_oculta_nombre")
 	=> cierre_marta
 - (silencio)
+	do Estado.reproducir_efecto("respiracion", -18.0)
 	Marta: ¿Sigue ahí? Disculpe… no he dormido nada.
 	do Estado.cambiar_credibilidad(-1)
 	=> cierre_marta
@@ -81,7 +90,8 @@ Marta: Gracias por escucharme. Si recibe alguna noticia, por favor, avíseme.
 
 ~ llamada_nino
 do Estado.cambiar_musica("tension")
-do Estado.estatica(0.7)
+do Estado.estatica(-14.0)
+do Estado.reproducir_efecto("estatica", -14.0)
 Niño: ¿Hola...? ¿Hay alguien?
 - Sí, te escucho. ¿Quién eres?
 	Niño: No puedo decir mi nombre. Estoy escondido.
@@ -101,12 +111,17 @@ Niño: ¿Hola...? ¿Hay alguien?
 	do Estado.cortar_llamada()
 	=> END
 - (silencio)
+	do Estado.reproducir_efecto("respiracion", -16.0)
 	Niño: …¿Sigue ahí? Respira muy bajito, por favor.
 	do Estado.cambiar_confianza_nino(-1)
 	=> nino_pasos
 ~ nino_pasos
+do Estado.reproducir_efecto("pasos", -5.0)
 Niño: Espera… [wait=2] Escuché pasos.
+do Estado.reproducir_efecto("telefono", -8.0)
 Niño: Tengo que esconder el teléfono. No cuelgue…
+do Estado.detener_efecto("estatica")
+do Estado.detener_efecto("respiracion")
 => END
 
 
