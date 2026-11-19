@@ -55,14 +55,17 @@ func transmitir():
 		await esperar_llamada()
 		DialogueManager.show_dialogue_balloon(recurso, "llamada_" + oyente)
 		await DialogueManager.dialogue_ended
-	Estado.ir_a_exploracion()
-	await terminar_noche(recurso)
+	await terminar_noche()
+
+func terminar_noche():
+	Estado.detener_efecto("estatica")
+	$Timbre.stop()
+	$Musica.stop()
 	
-func terminar_noche(recurso):
 	if Estado.noche >= 6:
 		get_tree().change_scene_to_file("res://pantalla_acusacion.tscn")
-		return
-	get_tree().change_scene_to_file("res://calle.tscn")
+	else:
+		get_tree().change_scene_to_file("res://calle.tscn")
 	
 func _on_estatica(intensidad: float) -> void:
 	Estado.reproducir_efecto("estatica", intensidad)

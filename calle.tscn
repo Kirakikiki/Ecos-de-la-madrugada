@@ -1345,7 +1345,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_obptw")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgy1v"]
-size = Vector2(10, 207)
+size = Vector2(9, 377.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2i28s"]
 size = Vector2(1404, 10)
@@ -1392,8 +1392,8 @@ sources/3 = SubResource("TileSetAtlasSource_ddok1")
 
 [node name="Fondo" type="Sprite2D" parent="." unique_id=113118649]
 texture_repeat = 2
-position = Vector2(-92, -104.99999)
-scale = Vector2(0.32065213, 0.33779764)
+position = Vector2(-40.000008, -104.99999)
+scale = Vector2(0.31415212, 0.33779764)
 texture = ExtResource("1_2i28s")
 centered = false
 region_enabled = true
@@ -1420,7 +1420,7 @@ tile_set = SubResource("TileSet_of1hf")
 [node name="Limites" type="StaticBody2D" parent="." unique_id=220443702]
 
 [node name="Izquierda" type="CollisionShape2D" parent="Limites" unique_id=942222526]
-position = Vector2(-216, 107)
+position = Vector2(-4, 87)
 shape = SubResource("RectangleShape2D_vgy1v")
 
 [node name="Arriba" type="CollisionShape2D" parent="Limites" unique_id=1595737500]
@@ -1447,6 +1447,7 @@ tile_map_data = PackedByteArray("AAAfABsAAwABAAAAAAAfABwAAwABAAEAAAAfAB0AAwABAAI
 tile_set = SubResource("TileSet_bjhji")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1179264097]
+position = Vector2(3, 0)
 color = Color(0.2901961, 0.32156864, 0.4392157, 1)
 
 [node name="Decoracion" type="TileMapLayer" parent="." unique_id=992823093]

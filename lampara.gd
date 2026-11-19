@@ -7,6 +7,8 @@ extends PointLight2D
 @export_range(0.0, 1.0) var suavidad := 0.9   
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return 
 	actualizar_textura()
 	
 func actualizar_textura() -> void:
