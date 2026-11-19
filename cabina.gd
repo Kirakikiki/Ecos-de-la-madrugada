@@ -11,6 +11,9 @@ func _ready():
 	$Interfaz/BotonContestar.hide()	
 	$Timbre.stream = load("res://audio/sonido_llamada.mp3")
 	Estado.musica_cambio.connect(_on_musica)
+	Estado.cambiar_musica("calma")
+	Estado.estatica_cambio.connect(_on_estatica)
+	Estado.llamada_cortada.connect(_on_llamada_cortada)
 	transmitir()
 
 func _unhandled_input(event):
@@ -61,6 +64,13 @@ func terminar_noche(recurso):
 		await DialogueManager.dialogue_ended
 		return
 	get_tree().change_scene_to_file("res://calle.tscn")
+	
+func _on_estatica(intensidad: float) -> void:
+	Estado.reproducir_efecto("estatica", intensidad)
+	
+func _on_llamada_cortada() -> void:
+	$Timbre.stop()
+	Estado.detener_efecto("estatica")
 	
 # Aquí: pasar a la investigación, y luego Estado.siguiente_noche()
 func _on_musica(nombre: String) -> void:
