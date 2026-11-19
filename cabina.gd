@@ -8,7 +8,8 @@ var murmullos = load("res://dialogos/murmullos.dialogue")
 
 func _ready():
 	$Interfaz/BotonContestar.pressed.connect(contestar)
-	$Interfaz/BotonContestar.hide()
+	$Interfaz/BotonContestar.hide()	
+	$Timbre.stream = load("res://audio/sonido_llamada.mp3")
 	Estado.musica_cambio.connect(_on_musica)
 	transmitir()
 
@@ -19,6 +20,7 @@ func _unhandled_input(event):
 func contestar():
 	if not esperando:
 		return
+		
 	esperando = false
 	$Interfaz/BotonContestar.hide()
 	$Timbre.stop()
@@ -58,11 +60,28 @@ func terminar_noche(recurso):
 		DialogueManager.show_dialogue_balloon(recurso, "resolver_final")
 		await DialogueManager.dialogue_ended
 		return
-	get_tree().change_scene_to_file("res://investigacion.tscn")
+	get_tree().change_scene_to_file("res://calle.tscn")
 	
 # Aquí: pasar a la investigación, y luego Estado.siguiente_noche()
+func _on_musica(nombre: String) -> void:
+	var ruta := ""
 	
-func _on_musica(nombre):
-	$Musica.stream = load("res://audio/%s.ogg" % nombre)
+	match nombre:
+		"calma":
+			ruta = "res://audio/calma.mp3"
+			
+		"tension":
+			ruta = "res://audio/tension.mp3"
+			
+		_: 
+			push_warning("No existe una música para: " + nombre)
+			return
+			
+	var audio = load(ruta)
+	if audio == null:
+		push_error("No se pudo cargar el audio: " + ruta)
+		return
+	
+	$Musica.stream = audio
 	$Musica.play()
 	
