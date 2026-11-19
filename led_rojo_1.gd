@@ -8,24 +8,54 @@ extends PointLight2D
 @export var tiempo_encendido = 0.7
 @export var tiempo_apagado = 0.8   
 
+var tween_parpadeo: Tween
+
 func _ready():
 	crear_textura()
+
 	if parpadea:
 		parpadear()
 
-func crear_textura():
-	var img = Image.create(tamano, tamano, false, Image.FORMAT_RGBA8)
-	var centro = tamano / 2.0
-	for y in tamano:
-		for x in tamano:
-			var brillo = 1 - Vector2(x, y).distance_to(Vector2(centro, centro)) / centro
-			brillo = pow(clamp(brillo, 0, 1), suavidad)
-			img.set_pixel(x, y, Color(brillo, brillo, brillo))
-	texture = ImageTexture.create_from_image(img)
+func crear_textura() -> void:
+	#var img = Image.create(tamano, tamano, false, Image.FORMAT_RGBA8)
+	if tamano < 2:
+		push_error("El tamaño del LED debe ser como mínimo 2.")
+		return
+		
+	var img := Image.create(tamano, tamano, false, Image.FORMAT_RGBA8)
+	
+	if img == null or img.is_empty():
+		push_error("No se pudo crear la imagen del LED.")
+		return
+	
+	var centro: float = tamano / 2.0
+	
+	for y in range(tamano):
+		for x in range(tamano):
+			var distancia := Vector2(x, y).distance_to(
+				Vector2(centro, centro)
+				)
 
-func parpadear():
-	var tween = create_tween().set_loops()
-	tween.tween_property(self, "energy", energia_encendida, tiempo_subida)
-	tween.tween_interval(tiempo_encendido)
-	tween.tween_property(self, "energy", 0.0, tiempo_subida)
-	tween.tween_interval(tiempo_apagado)
+			var brillo := 1.0 - distancia / centro
+			brillo = pow(clampf(brillo, 0.0, 1.0), suavidad)
+			
+			img.set_pixel(x, y, Color(1.0, 1.0, 1.0, brillo))
+	
+	var nueva_textura := ImageTexture.create_from_image(img)
+	
+	if nueva_textura == null: 
+		push_error("No se pudo generar la textura del LED.")
+		return
+	
+	set_deferred("texture", nueva_textura)
+	
+func parpadear() -> void:
+	if tween_parpadeo and tween_parpadeo.is_running():
+		tween_parpadeo.kill()
+		
+	tween_parpadeo = create_tween().set_loops()
+	tween_parpadeo.tween_property(self, "energy", energia_encendida, tiempo_subida)
+	tween_parpadeo.tween_interval(tiempo_encendido)
+	tween_parpadeo.tween_property(self, "energy", 0.0, tiempo_subida)
+	
+	tween_parpadeo.tween_interval(tiempo_apagado)
