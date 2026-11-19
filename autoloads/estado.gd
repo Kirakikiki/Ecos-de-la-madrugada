@@ -22,7 +22,7 @@ var pa = PA_MAXIMO
 
 # Reproductores de efectos de sonido
 var reproductores_efectos: Dictionary = {}
-
+var acusado_elegido: String = ""
 
 const ORDEN = {
 	1: ["ernesto", "rosa", "gaspar", "marta", "nino"],
@@ -99,6 +99,17 @@ func guardar_palabra(palabra: String):
 func tiene_palabra(palabra: String) -> bool:
 	return palabra in diario
 
+func culpar(sospechoso: String) -> void:
+	var sospechosos_validos = ["ernesto", "gaspar", "hijo_marta"]
+	
+	if sospechoso not in sospechosos_validos:
+		push_warning("Sospechoso no válido: " + sospechoso)
+		return
+		
+	acusado_elegido = sospechoso
+	print("El jugador ha culpado a: ", acusado_elegido)
+	juego_terminado.emit(acusado_elegido)
+	#get_tree().change_scene_to_file("res://final_placeholder.tscn")
 
 func terminar_investigacion():
 	reiniciar_pa()
