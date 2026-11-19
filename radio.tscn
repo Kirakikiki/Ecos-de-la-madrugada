@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://bmh87eggnquhw" path="res://assets/cabina/hoja.png" id="17_to5w0"]
 [ext_resource type="Script" uid="uid://cs02it0pu08x1" path="res://llamada.gd" id="18_inxrw"]
 [ext_resource type="AudioStream" uid="uid://fwrh5acyxbwo" path="res://audio/sonido_llamada.mp3" id="20_p30gs"]
-[ext_resource type="AudioStream" uid="uid://dd6ytdplhb8p4" path="res://audio/tension.mp3" id="21_h5dtr"]
 
 [sub_resource type="Image" id="Image_h5dtr"]
 data = {
@@ -794,6 +793,5 @@ lineas = Array[String](["Hola amigo", "como estas?", "espero que bien", "ultimam
 stream = ExtResource("20_p30gs")
 
 [node name="Musica" type="AudioStreamPlayer" parent="." unique_id=153564750]
-stream = ExtResource("21_h5dtr")
 
 [node name="calma" type="AudioStreamPlayer" parent="." unique_id=1919558764]
