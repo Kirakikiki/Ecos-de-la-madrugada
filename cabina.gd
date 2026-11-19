@@ -50,7 +50,7 @@ func transmitir():
 		await esperar_llamada()
 		DialogueManager.show_dialogue_balloon(recurso, "llamada_" + oyente)
 		await DialogueManager.dialogue_ended
-	print("Fin de la transmisión")
+	Estado.ir_a_exploracion()
 	await terminar_noche(recurso)
 	
 func terminar_noche(recurso):
