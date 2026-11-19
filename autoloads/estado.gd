@@ -124,13 +124,16 @@ func reproducir_efecto(nombre: String, volumen_db: float = 0.0) -> void:
 		push_warning("No se encontró el efecto: " + ruta)
 		return
 
+	var reproductor: AudioStreamPlayer
+
 	if not reproductores_efectos.has(nombre):
-		var reproductor := AudioStreamPlayer.new()
+		reproductor = AudioStreamPlayer.new()
 		reproductor.name = "Efecto_" + nombre
 		add_child(reproductor)
 		reproductores_efectos[nombre] = reproductor
-
-	var reproductor: AudioStreamPlayer = reproductores_efectos[nombre]
+	else:
+		reproductor = reproductores_efectos[nombre]
+		
 	reproductor.stream = load(ruta)
 	reproductor.volume_db = volumen_db
 	reproductor.play()
