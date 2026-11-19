@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://jp887cimv3x1"]
-
-[ext_resource type="Script" uid="uid://cex7bqgo3xado" path="res://examinable.gd" id="1_tedfe"]
-
-[node name="Examinable" type="Node2D" unique_id=1190619030]
-script = ExtResource("1_tedfe")
