@@ -60,8 +60,7 @@ func transmitir():
 	
 func terminar_noche(recurso):
 	if Estado.noche >= 6:
-		DialogueManager.show_dialogue_balloon(recurso, "resolver_final")
-		await DialogueManager.dialogue_ended
+		get_tree().change_scene_to_file("res://pantalla_acusacion.tscn")
 		return
 	get_tree().change_scene_to_file("res://calle.tscn")
 	
