@@ -2,10 +2,12 @@
 
 ~ llamada_nino
 do Estado.cambiar_musica("tension")
-do Estado.estatica(0.7)
+do Estado.estatica(-14.0)
+do Estado.reproducir_efecto("estatica", -14.0)
 Niño: ¿Es usted? El de la radio…
 - Sí. ¿Pudiste descansar?
 	Niño: No. Él camina de un lado a otro. A veces se queda quieto frente a la puerta.
+	do Estado.reproducir_efecto("pasos", -10.0)
 	do Estado.cambiar_confianza_nino(1)
 	=> nino_detalles
 - Necesito que me digas dónde estás.
@@ -17,6 +19,7 @@ Niño: ¿Es usted? El de la radio…
 	do Estado.cambiar_confianza_nino(-1)
 	=> nino_detalles
 - (silencio)
+	do Estado.reproducir_efecto("respiracion", -16.0)
 	Niño: …¿Se fue? [wait=2] No se vaya, por favor.
 	do Estado.cambiar_confianza_nino(-1)
 	=> nino_detalles
@@ -29,6 +32,7 @@ Niño: No era una caja… creo que era algo mucho más pesado.
 	do Estado.agregar_pista("sombra_alta")
 	=> nino_final
 - ¿Puedes salir?
+	do Estado.reproducir_efecto("puerta", -10.0)
 	Niño: La puerta está cerrada. Y la ventana es muy pequeña.
 	do Estado.agregar_pista("puerta_cerrada")
 	=> nino_final
@@ -38,17 +42,22 @@ Niño: No era una caja… creo que era algo mucho más pesado.
 	=> nino_final
 ~ nino_final
 Niño: Viene otra vez. Si vuelvo a llamar, ¿va a contestar?
+do Estado.detener_efecto("estatica")
+do Estado.detener_efecto("respiracion")
+do Estado.detener_efecto("pasos")
 => END
 
 ~ llamada_gaspar
 do Estado.cambiar_musica("calma")
 Gaspar: Anoche volví a revisar la farola siete.
 - ¿Encontró algo?
+	do Estado.reproducir_efecto("farola", -8.0)
 	Gaspar: Una marca en el poste. Como si alguien hubiera apoyado una herramienta metálica.
 	do Estado.agregar_pista("marca_poste")
 	=> cierre_gaspar
 - ¿Volvió a ver a la figura?
 	Gaspar: No. Pero escuché pasos cuando todas las luces se apagaron.
+	do Estado.reproducir_efecto("pasos", -12.0)
 	=> cierre_gaspar
 - (silencio)
 	Gaspar: …Disculpe, estoy nervioso. Nunca hablo tanto.
@@ -56,4 +65,6 @@ Gaspar: Anoche volví a revisar la farola siete.
 	=> cierre_gaspar
 ~ cierre_gaspar
 Gaspar: No me gusta esa calle. Algo está haciendo que las luces fallen justo cuando alguien pasa.
+do Estado.detener_efecto("farola")
+do Estado.detener_efecto("pasos")
 => END

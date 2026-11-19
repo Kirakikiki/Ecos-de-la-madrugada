@@ -115,6 +115,7 @@ func culpar(sospechoso: String) -> void:
 	acusado_elegido = sospechoso
 	print("El jugador ha culpado a: ", acusado_elegido)
 	juego_terminado.emit(acusado_elegido)
+	get_tree().change_scene_to_file("res://final_placeholder.tscn")
 
 # REPRODUCIR EFECTOS DE SONIDO
 func reproducir_efecto(nombre: String, volumen_db: float = 0.0) -> void:
