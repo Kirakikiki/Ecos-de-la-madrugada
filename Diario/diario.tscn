@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://ba70kpipobsi8"]
+
+[ext_resource type="Script" uid="uid://ch8k438c2l25l" path="res://Diario/diario.gd" id="1_bdnjn"]
+[ext_resource type="Theme" uid="uid://0ddl03q7h485" path="res://Diario/theme.tres" id="1_tr4tx"]
+[ext_resource type="Texture2D" uid="uid://bjugnoruejxad" path="res://Diario/imagenes/diario1.png" id="1_xlpmq"]
+[ext_resource type="PackedScene" uid="uid://5ctgj0q25fpx" path="res://Diario/slot_palabra.tscn" id="2_tr4tx"]
+[ext_resource type="Texture2D" uid="uid://dxwgnl6rxhas0" path="res://Diario/imagenes/diario2.png" id="3_bdnjn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_04tqp"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("1_xlpmq")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 3.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6i7j0"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("3_bdnjn")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 3.0
+texture_margin_bottom = 1.0
+
+[node name="Diario" type="CanvasLayer" unique_id=1162007026]
+script = ExtResource("1_bdnjn")
+
+[node name="Control" type="Control" parent="." unique_id=880372228]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1070414683]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tr4tx")
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="PanelContainer" parent="Control/MarginContainer" unique_id=1886816054]
+layout_mode = 2
+localize_numeral_system = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/Panel" unique_id=878200399]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Palabras" type="PanelContainer" parent="Control/MarginContainer/Panel/HBoxContainer" unique_id=1581241940]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_04tqp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras" unique_id=1303160017]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Titulo" type="Label" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer" unique_id=1267790004]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "PALABRAS"
+horizontal_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer" unique_id=1218900121]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="SlotPalabra" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=2040942076 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="SlotPalabra2" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=1261245821 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="SlotPalabra3" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=1714378218 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="SlotPalabra4" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=1013718704 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="SlotPalabra5" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=194691942 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="SlotPalabra6" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=1691723418 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="SlotPalabra7" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=1874114774 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="SlotPalabra8" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=1364418645 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="SlotPalabra9" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=1358875440 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="SlotPalabra10" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=787269356 instance=ExtResource("2_tr4tx")]
+layout_mode = 2
+
+[node name="Pistas" type="PanelContainer" parent="Control/MarginContainer/Panel/HBoxContainer" unique_id=2044505726]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.7
+theme_override_styles/panel = SubResource("StyleBoxTexture_6i7j0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/Panel/HBoxContainer/Pistas" unique_id=1693922465]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Titulo" type="Label" parent="Control/MarginContainer/Panel/HBoxContainer/Pistas/VBoxContainer" unique_id=552527593]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "PISTAS"
+horizontal_alignment = 1
+
+[node name="Hoja" type="VBoxContainer" parent="Control/MarginContainer/Panel/HBoxContainer/Pistas/VBoxContainer" unique_id=1074500551]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="TituloPista" type="Label" parent="Control/MarginContainer/Panel/HBoxContainer/Pistas/VBoxContainer/Hoja" unique_id=265123807]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+
+[node name="Imagen" type="TextureRect" parent="Control/MarginContainer/Panel/HBoxContainer/Pistas/VBoxContainer/Hoja" unique_id=627366796]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Texto" type="Label" parent="Control/MarginContainer/Panel/HBoxContainer/Pistas/VBoxContainer/Hoja" unique_id=343220135]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Nav" type="HBoxContainer" parent="Control/MarginContainer/Panel/HBoxContainer/Pistas/VBoxContainer" unique_id=237163087]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Anterior" type="Button" parent="Control/MarginContainer/Panel/HBoxContainer/Pistas/VBoxContainer/Nav" unique_id=588936379]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Anterior"
+
+[node name="Siguiente" type="Button" parent="Control/MarginContainer/Panel/HBoxContainer/Pistas/VBoxContainer/Nav" unique_id=1974438716]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Siguiente"
