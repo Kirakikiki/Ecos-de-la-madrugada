@@ -3,9 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://ba6wv3ctx88io" path="res://assets/investigacion/Gemini_Generated_Image_9xvpt09xvpt09xvp.jpg" id="1_2i28s"]
 [ext_resource type="PackedScene" uid="uid://dhvyiopnqrd7p" path="res://jugador.tscn" id="1_fe4kw"]
 [ext_resource type="Texture2D" uid="uid://dglw8h1eongro" path="res://assets/investigacion/craftpix-net-942642-free-urban-shooter-top-down-pixel-art-mini-game-kit/City_Tileset/Tile.png" id="2_2i28s"]
+
 [ext_resource type="Texture2D" uid="uid://47tqgkuraqbn" path="res://assets/investigacion/lamparas/streetlight-ornate-off.png" id="3_2io2x"]
 [ext_resource type="PackedScene" uid="uid://crg3ifmdinsn1" path="res://pista.tscn" id="5_obptw"]
 [ext_resource type="PackedScene" uid="uid://r1odrnweqyv0" path="res://visor.tscn" id="6_of1hf"]
+
+[ext_resource type="PackedScene" uid="uid://cfoqk0webhs3l" path="res://Personajes/Aurelio.tscn" id="4_2io2x"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2io2x"]
 texture = ExtResource("2_2i28s")
@@ -1458,3 +1462,7 @@ color = Color(0.2901961, 0.32156864, 0.4392157, 1)
 position = Vector2(40, 126)
 
 [node name="Visor" parent="." unique_id=895786614 instance=ExtResource("6_of1hf")]
+
+[node name="Aurelio" parent="." unique_id=634055156 instance=ExtResource("4_2io2x")]
+position = Vector2(69, 99)
+scale = Vector2(0.3, 0.3)
