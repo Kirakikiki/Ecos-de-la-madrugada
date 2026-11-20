@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bb0xa1xcdof3r"]
+
+[ext_resource type="Script" uid="uid://c0eqt4dsmet3h" path="res://punto_accion.gd" id="1_tfvke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gs08a"]
+
+[node name="PuntoAccion" type="Area2D" unique_id=486146004]
+script = ExtResource("1_tfvke")
+nombrePista = null
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1701215896]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=791962941]
+shape = SubResource("RectangleShape2D_gs08a")

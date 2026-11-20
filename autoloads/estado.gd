@@ -11,7 +11,7 @@ signal hallazgo_registrado(id)
 
 const ESCENA_CABINA = "res://radio.tscn"        
 const ESCENA_EXPLORACION = "res://calle.tscn"  
-const PA_MAXIMO = 3
+const PA_MAXIMO = 1
 
 const ORDEN = {
 	1: ["ernesto", "rosa", "gaspar", "marta", "nino"],
@@ -62,8 +62,12 @@ func terminar_investigacion():
 	ir_a_cabina()
 
 #Puntos de accion
+func tiene_pa(n: int = 1) -> bool:
+	return pa >= n
+
 func gastar_pa(n):
-	pa -= n
+	pa= maxi(pa - n, 0)
+	print("PA restantes: ", pa)
 	pa_cambio.emit(pa)
 
 func reiniciar_pa():
