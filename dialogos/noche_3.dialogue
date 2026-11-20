@@ -2,12 +2,14 @@
 
 ~ llamada_ernesto
 do Estado.cambiar_musica("calma")
+do Estado.reproducir_efecto("horno", -14.0)
 Ernesto: Anoche encontré barro junto a la puerta de la panadería.
 - ¿Alguien entró?
 	Ernesto: No vi a nadie. Pero las huellas iban hacia el camino viejo.
 	do Estado.marcar_lugar("camino_viejo", "examinable")
 	=> cierre_ernesto
 - ¿Qué llevaba la persona?
+	do Estado.reproducir_efecto("arrastre", -12.0)
 	Ernesto: Una bolsa grande. Pensé que venía por el pan, pero ni siquiera tocó la puerta.
 	do Estado.agregar_pista("bolsa_grande")
 	=> cierre_ernesto
@@ -15,10 +17,12 @@ Ernesto: Anoche encontré barro junto a la puerta de la panadería.
 	Ernesto: …Ya sé, ya sé. Lo cuento todo con rodeos.
 	=> cierre_ernesto
 ~ cierre_ernesto
+do Estado.detener_efecto("horno")
 Ernesto: Hay cosas que uno prefiere no ver. Aunque después vuelven en los sueños.
 => END
 
 ~ llamada_rosa
+do Estado.reproducir_efecto("viento", -20.0)
 Rosa: Encontré una fotografía vieja de la noche del apagón.
 - ¿Qué aparece en ella?
 	Rosa: La calle de la torre. Al fondo se ve una persona junto a una casa abandonada.
@@ -28,15 +32,19 @@ Rosa: Encontré una fotografía vieja de la noche del apagón.
 	Rosa: No con seguridad. La fotografía está dañada.
 	=> cierre_rosa
 - (silencio)
+	do Estado.reproducir_efecto("papel", -8.0)
 	Rosa: Le dejaré la foto en la mesa del fondo. Para que la mire cuando pueda.
 	do Estado.agregar_pista("foto_apagon")
 	=> cierre_rosa
 ~ cierre_rosa
+do Estado.detener_efecto("viento")
 Rosa: La gente cree que el tiempo borra las cosas. A veces solo las esconde.
 => END
 
 ~ llamada_marta
 do Estado.cambiar_musica("tension")
+do Estado.reproducir_efecto("interferencia", -16.0)
+do Estado.reproducir_efecto("respiracion", -18.0)
 Marta: ¿Ha sabido algo de mi hijo?
 - ¿Ha hablado con sus amigos?
 	Marta: Con algunos. Nadie lo ha visto. Es extraño… él siempre avisa.
@@ -51,5 +59,9 @@ Marta: ¿Ha sabido algo de mi hijo?
 	do Estado.cambiar_credibilidad(-1)
 	=> cierre_marta
 ~ cierre_marta
+do Estado.detener_efecto("respiracion")
+do Estado.detener_efecto("interferencia")
+do Estado.detener_efecto("arrastre")
+do Estado.detener_efecto("papel")
 Marta: Si escucha algo, no espere hasta mañana. Se lo suplico.
 => END

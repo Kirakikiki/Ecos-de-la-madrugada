@@ -9,6 +9,7 @@ Niño: Pude mirar por una rendija.
 	do Estado.agregar_pista("estrella_torcida")
 	=> nino_recuerdo
 - ¿Reconociste al hombre?
+	do Estado.reproducir_efecto("llaves", -8.0)
 	Niño: No le vi bien la cara. Pero llevaba un llavero que sonaba al caminar.
 	do Estado.agregar_pista("llavero")
 	=> nino_recuerdo
@@ -29,10 +30,15 @@ Niño: Había otra persona en el suelo. No se movía.
 	=> nino_fin
 ~ nino_fin
 Niño: Si escuchas tres golpes, significa que está cerca.
+do Estado.reproducir_efecto("tres_golpes", -3.0)
+do Estado.detener_efecto("llaves")
+do Estado.detener_efecto("estatica")
 => END
 
 ~ llamada_gaspar
 do Estado.cambiar_musica("calma")
+do Estado.reproducir_efecto("farola", -8.0)
+do Estado.reproducir_efecto("apagado", -6.0)
 Gaspar: La farola siete volvió a apagarse. Esta vez me quedé escondido.
 - ¿Qué vio?
 	Gaspar: Un hombre alto. Se detuvo debajo de la luz y miró hacia la torre.
@@ -46,4 +52,5 @@ Gaspar: La farola siete volvió a apagarse. Esta vez me quedé escondido.
 	=> cierre_gaspar
 ~ cierre_gaspar
 Gaspar: No voy a volver a hacer esa ronda solo.
+do Estado.detener_efecto("farola")
 => END
