@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5o6o1loqhlys"
-path="res://.godot/imported/Gemini_Generated_Image_qtcnopqtcnopqtcn.png-6b4a8d0a41edd7f01031981c7d43eb2f.ctex"
+uid="uid://bqomccqk021kc"
+path="res://.godot/imported/canasta_pan.png-92f20bbe7082bfbbe423e4f4cb9c534c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imagenes/pistas/Gemini_Generated_Image_qtcnopqtcnopqtcn.png"
-dest_files=["res://.godot/imported/Gemini_Generated_Image_qtcnopqtcnopqtcn.png-6b4a8d0a41edd7f01031981c7d43eb2f.ctex"]
+source_file="res://imagenes/pistas/canasta_pan.png"
+dest_files=["res://.godot/imported/canasta_pan.png-92f20bbe7082bfbbe423e4f4cb9c534c.ctex"]
 
 [params]
 
