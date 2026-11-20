@@ -36,6 +36,7 @@ func _on_sale(body):
 func _unhandled_input(event):
 	if cerca and event.is_action_pressed("interactuar"):
 		get_viewport().set_input_as_handled()
+		Estado.registrar_hallazgo(id)
 		var visor = get_tree().get_first_node_in_group("visor")
 		if visor:
 			visor.mostrar(id)
