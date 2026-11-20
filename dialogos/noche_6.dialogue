@@ -22,6 +22,7 @@ do Estado.cambiar_musica("tension")
 do Estado.estatica(1.0)
 Niño: ¿Sigue ahí? Ya no puedo esperar mucho.
 - Vamos a buscarte. Necesito que te alejes de la puerta.
+	do Estado.reproducir_efecto("ventana", -6.0)
 	Niño: Hay una ventana pequeña. Puedo intentar abrirla.
 	do Estado.avisar_autoridades()
 	=> final_decision
@@ -34,9 +35,11 @@ Niño: ¿Sigue ahí? Ya no puedo esperar mucho.
 	do Estado.cambiar_confianza_nino(-2)
 	=> resolver_final
 ~ final_decision
+do Estado.reproducir_efecto("sirenas", -6.0)
 Niño: Escucho sirenas… ¿son ustedes?
 => resolver_final
 ~ resolver_final
+do Estado.detener_efecto("estatica")
 if Estado.confianza_nino <= 0 and not Estado.autoridades_avisadas
 	=> final_4_ultima_llamada
 elif Estado.marta_confrontada and not Estado.autoridades_avisadas
@@ -66,6 +69,7 @@ do Estado.terminar_juego("huida")
 ~ final_4_ultima_llamada
 Niño: …Usted no contestó.
 Niño: Yo seguí llamando. Hasta que ya no hubo nadie.
+do Estado.reproducir_efecto("ocupado", -8.0)
 do Estado.terminar_juego("silencio")
 => END
 

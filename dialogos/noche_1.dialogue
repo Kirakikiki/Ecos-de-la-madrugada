@@ -3,6 +3,7 @@
 
 ~ llamada_ernesto
 do Estado.cambiar_musica("calma")
+do Estado.reproducir_efecto("horno", -14.0)
 Ernesto: Buenas noches, locutor. Soy Ernesto, el de la panadería de la plaza. Sí, sigo horneando. Alguien tiene que hacerlo.
 Ernesto: Hoy me sobraron cuarenta [wave][url=panes]panes[/url][/wave]. Siempre me sobran. Hace años que nadie viene a comprarlos.
 - ¿Para quién hornea, entonces?
@@ -16,8 +17,10 @@ Ernesto: Hoy me sobraron cuarenta [wave][url=panes]panes[/url][/wave]. Siempre m
 - (silencio)
 	Ernesto: ¿Hola? ¿Se cortó? …Bueno, no lo molesto más.
 	do Estado.cambiar_credibilidad(-1)
+	do Estado.detener_efecto("horno")
 	=> END
 ~ cierre_ernesto
+do Estado.detener_efecto("horno")
 Ernesto: Usted siga hablando, que se agradece oír una voz.
 => END
 
@@ -109,6 +112,8 @@ Niño: ¿Hola...? ¿Hay alguien?
 	Niño: …No. No puedo. Me va a oír.
 	do Estado.cambiar_confianza_nino(-1)
 	do Estado.cortar_llamada()
+	do Estado.reproducir_efecto("ocupado", -10.0)
+	do Estado.detener_efecto("estatica")
 	=> END
 - (silencio)
 	do Estado.reproducir_efecto("respiracion", -16.0)

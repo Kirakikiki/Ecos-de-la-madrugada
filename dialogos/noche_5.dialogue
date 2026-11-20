@@ -2,6 +2,7 @@
 
 ~ llamada_marta
 do Estado.cambiar_musica("tension")
+do Estado.reproducir_efecto("respiracion", -16.0)
 Marta: Me dijeron que está haciendo preguntas sobre la casa vieja.
 - Usted dijo que hacía años que no iba allí.
 	Marta: Y es verdad. No entiendo por qué insiste.
@@ -30,7 +31,10 @@ Marta: Mi hijo no es una mala persona. Solo… ha cometido errores.
 	=> marta_fin
 ~ marta_fin
 Marta: No vuelva a llamar a esa casa.
+do Estado.reproducir_efecto("colgar", -4.0)
+do Estado.reproducir_efecto("ocupado", -10.0)
 do Estado.marta_confrontada = true
+do Estado.detener_efecto("respiracion")
 => END
 
 ~ llamada_nino
@@ -50,6 +54,11 @@ Niño: Ya sé quién era.
 	do Estado.cambiar_confianza_nino(-1)
 	=> nino_confirma
 ~ nino_confirma
+do Estado.reproducir_efecto("pasos", -10.0)
+do Estado.reproducir_efecto("puerta", -8.0)
 Niño: Creo que ella sabe dónde estoy.
 Niño: Por favor, no deje que vuelva.
+do Estado.detener_efecto("estatica")
+do Estado.detener_efecto("pasos")
+do Estado.detener_efecto("puerta")
 => END
