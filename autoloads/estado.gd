@@ -45,7 +45,6 @@ func terminar_investigacion():
 	reiniciar_pa()
 	siguiente_noche()
 	ir_a_cabina()
-	get_tree().change_scene_to_file("res://radio.tscn")
 
 func gastar_pa(n):
 	pa -= n
@@ -117,7 +116,6 @@ func culpar(sospechoso: String) -> void:
 	print("El jugador ha culpado a: ", acusado_elegido)
 	juego_terminado.emit(acusado_elegido)
 	get_tree().change_scene_to_file("res://final_placeholder.tscn")
-	
 
 # REPRODUCIR EFECTOS DE SONIDO
 func reproducir_efecto(nombre: String, volumen_db: float = 0.0) -> void:
