@@ -1452,7 +1452,7 @@ color = Color(0.2901961, 0.32156864, 0.4392157, 1)
 [node name="Decoracion" type="TileMapLayer" parent="." unique_id=992823093]
 
 [node name="Pista" parent="." unique_id=1276313390 instance=ExtResource("5_obptw")]
-position = Vector2(40, 126)
+position = Vector2(231, 165)
 
 [node name="Visor" parent="." unique_id=895786614 instance=ExtResource("6_of1hf")]
 
