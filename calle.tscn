@@ -1,15 +1,11 @@
 [gd_scene format=4 uid="uid://ddo1tm4mp4f41"]
 
 [ext_resource type="Texture2D" uid="uid://ba6wv3ctx88io" path="res://assets/investigacion/Gemini_Generated_Image_9xvpt09xvpt09xvp.jpg" id="1_2i28s"]
-[ext_resource type="PackedScene" uid="uid://dhvyiopnqrd7p" path="res://jugador.tscn" id="1_fe4kw"]
 [ext_resource type="Texture2D" uid="uid://dglw8h1eongro" path="res://assets/investigacion/craftpix-net-942642-free-urban-shooter-top-down-pixel-art-mini-game-kit/City_Tileset/Tile.png" id="2_2i28s"]
-
 [ext_resource type="Texture2D" uid="uid://47tqgkuraqbn" path="res://assets/investigacion/lamparas/streetlight-ornate-off.png" id="3_2io2x"]
+[ext_resource type="PackedScene" uid="uid://cfoqk0webhs3l" path="res://Personajes/Aurelio.tscn" id="4_2io2x"]
 [ext_resource type="PackedScene" uid="uid://crg3ifmdinsn1" path="res://pista.tscn" id="5_obptw"]
 [ext_resource type="PackedScene" uid="uid://r1odrnweqyv0" path="res://visor.tscn" id="6_of1hf"]
-
-[ext_resource type="PackedScene" uid="uid://cfoqk0webhs3l" path="res://Personajes/Aurelio.tscn" id="4_2io2x"]
-
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2io2x"]
 texture = ExtResource("2_2i28s")
@@ -1442,9 +1438,6 @@ position = Vector2(938, 111)
 shape = SubResource("RectangleShape2D_obptw")
 
 [node name="Puertas" type="Node2D" parent="." unique_id=2104499015]
-
-[node name="Jugador" parent="." unique_id=1666062458 instance=ExtResource("1_fe4kw")]
-position = Vector2(0, 96)
 
 [node name="Lampara" type="TileMapLayer" parent="." unique_id=1161285909]
 position = Vector2(-267, -142)
