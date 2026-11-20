@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dglw8h1eongro" path="res://assets/investigacion/craftpix-net-942642-free-urban-shooter-top-down-pixel-art-mini-game-kit/City_Tileset/Tile.png" id="2_2i28s"]
 
 [ext_resource type="Texture2D" uid="uid://47tqgkuraqbn" path="res://assets/investigacion/lamparas/streetlight-ornate-off.png" id="3_2io2x"]
+[ext_resource type="PackedScene" uid="uid://crg3ifmdinsn1" path="res://pista.tscn" id="5_obptw"]
+[ext_resource type="PackedScene" uid="uid://r1odrnweqyv0" path="res://visor.tscn" id="6_of1hf"]
 
 [ext_resource type="PackedScene" uid="uid://cfoqk0webhs3l" path="res://Personajes/Aurelio.tscn" id="4_2io2x"]
 
@@ -1455,6 +1457,11 @@ position = Vector2(3, 0)
 color = Color(0.2901961, 0.32156864, 0.4392157, 1)
 
 [node name="Decoracion" type="TileMapLayer" parent="." unique_id=992823093]
+
+[node name="Pista" parent="." unique_id=1276313390 instance=ExtResource("5_obptw")]
+position = Vector2(40, 126)
+
+[node name="Visor" parent="." unique_id=895786614 instance=ExtResource("6_of1hf")]
 
 [node name="Aurelio" parent="." unique_id=634055156 instance=ExtResource("4_2io2x")]
 position = Vector2(69, 99)
