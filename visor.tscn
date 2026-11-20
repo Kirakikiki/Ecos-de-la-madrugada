@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://r1odrnweqyv0"]
+
+[ext_resource type="Script" uid="uid://7vxi8fqbf28c" path="res://visor.gd" id="1_3ilh3"]
+[ext_resource type="Shader" uid="uid://3p01k7h4xhrd" path="res://visor.gdshader" id="1_lewg6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d7sbs"]
+shader = ExtResource("1_lewg6")
+shader_parameter/desenfoque = 2.5
+shader_parameter/tinte = Color(0.1, 0.13, 0.21, 1)
+shader_parameter/oscuridad = 0.35
+
+[node name="Visor" type="CanvasLayer" unique_id=895786614 groups=["visor"]]
+script = ExtResource("1_3ilh3")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=1613060960]
+material = SubResource("ShaderMaterial_d7sbs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Centro" type="CenterContainer" parent="." unique_id=514249896]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Centro" unique_id=350504313]
+layout_mode = 2
+
+[node name="Imagen" type="TextureRect" parent="Centro/VBox" unique_id=1397931655]
+texture_filter = 1
+custom_minimum_size = Vector2(120, 90)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Titulo" type="Label" parent="Centro/VBox" unique_id=450075015]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+
+[node name="Texto" type="Label" parent="Centro/VBox" unique_id=1979905695]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+autowrap_mode = 3

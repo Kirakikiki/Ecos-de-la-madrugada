@@ -35,6 +35,7 @@ var will_hide_balloon: bool = false
 ## A dictionary to store any ephemeral variables
 var locals: Dictionary = {}
 
+
 var _locale: String = TranslationServer.get_locale()
 
 ## The current line
@@ -81,6 +82,7 @@ func _ready() -> void:
 
 	mutation_cooldown.timeout.connect(_on_mutation_cooldown_timeout)
 	add_child(mutation_cooldown)
+
 
 	if auto_start:
 		if not is_instance_valid(dialogue_resource):
@@ -148,6 +150,7 @@ func apply_dialogue_line() -> void:
 	if not dialogue_line.text.is_empty():
 		dialogue_label.type_out()
 		await dialogue_label.finished_typing
+		guardar_palabras_de_la_linea(dialogue_line.text)
 
 	# Wait for next line
 	if dialogue_line.has_tag("voice"):
@@ -191,6 +194,8 @@ func _on_mutated(mutation: Dictionary) -> void:
 
 
 func _on_balloon_gui_input(event: InputEvent) -> void:
+	
+
 	# See if we need to skip typing of the dialogue
 	if dialogue_label.is_typing:
 		var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
@@ -215,5 +220,13 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
 
-
+func guardar_palabras_de_la_linea(texto: String) -> void:
+	var regex := RegEx.new()
+	regex.compile("\\[url=([^\\]]+)\\]")
+	for coincidencia in regex.search_all(texto):
+		var palabra: String = coincidencia.get_string(1)
+		if not Estado.tiene_palabra(palabra):
+			Estado.guardar_palabra(palabra)
+			Estado.reproducir_efecto("palabra", -6.0)
+			print("Diario: ", Estado.diario)
 #endregion

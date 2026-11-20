@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://crg3ifmdinsn1"]
+
+[ext_resource type="Script" uid="uid://bqpu66htfw3ai" path="res://pista.gd" id="1_7gt8j"]
+[ext_resource type="Script" uid="uid://b8xxk6wqm3r1o" path="res://brillo.gd" id="2_0fk5m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pojb"]
+size = Vector2(22, 22)
+
+[node name="Pista" type="Area2D" unique_id=1334216409]
+script = ExtResource("1_7gt8j")
+
+[node name="Colision" type="CollisionShape2D" parent="." unique_id=1433216176]
+shape = SubResource("RectangleShape2D_0pojb")
+
+[node name="Brillo" type="PointLight2D" parent="." unique_id=1154067560]
+texture_scale = 0.75
+script = ExtResource("2_0fk5m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=982787935]

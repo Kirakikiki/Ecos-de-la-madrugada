@@ -6,6 +6,8 @@ signal estatica_cambio(intensidad)
 signal llamada_cortada
 signal juego_terminado(final)
 signal pa_cambio(valor)
+signal palabra_guardada(palabra)
+signal hallazgo_registrado(id)
 
 const ESCENA_CABINA = "res://radio.tscn"        
 const ESCENA_EXPLORACION = "res://calle.tscn"  
@@ -30,15 +32,28 @@ var autoridades_avisadas: bool = false
 var marta_confrontada: bool = false
 var tutorial_visto = false
 var pa = PA_MAXIMO
+var hallazgos: Array[String] = []    # pistas ya examinadas en la calle
 
 # Reproductores de efectos de sonido
 var reproductores_efectos: Dictionary = {}
 var acusado_elegido: String = ""
 
+# 
+func registrar_hallazgo(id: String):
+	if id not in hallazgos:
+		hallazgos.append(id)
+		hallazgo_registrado.emit(id)
+
+func tiene_hallazgo(id: String) -> bool:
+	return id in hallazgos
+	
+#Cambio de escena 
 func ir_a_cabina():
+	detener_todos_los_efectos()
 	get_tree().change_scene_to_file(ESCENA_CABINA)
 
 func ir_a_exploracion():
+	detener_todos_los_efectos()
 	get_tree().change_scene_to_file(ESCENA_EXPLORACION)
 
 func terminar_investigacion():
@@ -46,6 +61,7 @@ func terminar_investigacion():
 	siguiente_noche()
 	ir_a_cabina()
 
+#Puntos de accion
 func gastar_pa(n):
 	pa -= n
 	pa_cambio.emit(pa)
@@ -54,22 +70,22 @@ func reiniciar_pa():
 	pa = PA_MAXIMO
 	pa_cambio.emit(pa)
 
-
+#aqui esta la noche 
 func siguiente_noche():
 	noche += 1
 
-
+#aqui esta la credibilidad 
 func sumar_credibilidad(n):
 	credibilidad += n
-
 
 func cambiar_credibilidad(n):
 	sumar_credibilidad(n)
 
-
+#aqui esta la confianza 
 func cambiar_confianza_nino(n: int):
 	confianza_nino += n
 
+#
 func agregar_pista(id: String):
 	if id not in pistas:
 		pistas.append(id)
@@ -77,6 +93,7 @@ func agregar_pista(id: String):
 func guardar_palabra(palabra: String):
 	if palabra not in diario:
 		diario.append(palabra)
+		palabra_guardada.emit(palabra)
 
 func tiene_palabra(palabra: String) -> bool:
 	return palabra in diario
@@ -84,27 +101,35 @@ func marcar_lugar(id, peligroso = false):
 	if peligroso is String:
 		peligroso = (peligroso == "peligroso")
 	lugares[id] = peligroso
+	
+
 # Una sola pregunta para puertas y objetos:
 func desbloqueado(id: String) -> bool:
 	return id in diario or id in pistas or lugares.has(id)
+
+#verdadero si cumple uno de los requisitos de la lista
+func desbloqueado_alguno(lista: Array) -> bool:
+	for r in lista:
+		if desbloqueado(r):
+			return true
+	return false
+
+#eventos de la historia 
 func avisar_autoridades():
 	autoridades_avisadas = true
-
 
 func cambiar_musica(nombre):
 	musica_cambio.emit(nombre)
 
-
 func estatica(intensidad: float):
 	estatica_cambio.emit(intensidad)
-
 
 func cortar_llamada():
 	llamada_cortada.emit()
 
-
 func terminar_juego(final: String):
 	juego_terminado.emit(final)
+
 func culpar(sospechoso: String) -> void:
 	var sospechosos_validos = ["ernesto", "gaspar", "hijo_marta"]
 
@@ -124,13 +149,16 @@ func reproducir_efecto(nombre: String, volumen_db: float = 0.0) -> void:
 		push_warning("No se encontró el efecto: " + ruta)
 		return
 
+	var reproductor: AudioStreamPlayer
+
 	if not reproductores_efectos.has(nombre):
-		var reproductor := AudioStreamPlayer.new()
+		reproductor = AudioStreamPlayer.new()
 		reproductor.name = "Efecto_" + nombre
 		add_child(reproductor)
 		reproductores_efectos[nombre] = reproductor
-
-	var reproductor: AudioStreamPlayer = reproductores_efectos[nombre]
+	else:
+		reproductor = reproductores_efectos[nombre]
+		
 	reproductor.stream = load(ruta)
 	reproductor.volume_db = volumen_db
 	reproductor.play()
