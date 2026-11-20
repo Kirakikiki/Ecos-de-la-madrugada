@@ -4,6 +4,7 @@
 do Estado.cambiar_musica("tension")
 do Estado.estatica(-14.0)
 do Estado.reproducir_efecto("estatica", -14.0)
+do Estado.reproducir_efecto("goteo", -12.0)
 Niño: ¿Es usted? El de la radio…
 - Sí. ¿Pudiste descansar?
 	Niño: No. Él camina de un lado a otro. A veces se queda quieto frente a la puerta.
@@ -25,6 +26,7 @@ Niño: ¿Es usted? El de la radio…
 	=> nino_detalles
 	
 ~ nino_detalles
+do Estado.reproducir_efecto("arrastre", -10.0)
 Niño: Vi una luz por debajo de la puerta. Después escuché que arrastraban algo.
 Niño: No era una caja… creo que era algo mucho más pesado.
 - ¿Viste la cara de ese hombre?
@@ -45,6 +47,8 @@ Niño: Viene otra vez. Si vuelvo a llamar, ¿va a contestar?
 do Estado.detener_efecto("estatica")
 do Estado.detener_efecto("respiracion")
 do Estado.detener_efecto("pasos")
+do Estado.detener_efecto("goteo")
+do Estado.detener_efecto("arrastre")
 => END
 
 ~ llamada_gaspar
@@ -67,4 +71,6 @@ Gaspar: Anoche volví a revisar la farola siete.
 Gaspar: No me gusta esa calle. Algo está haciendo que las luces fallen justo cuando alguien pasa.
 do Estado.detener_efecto("farola")
 do Estado.detener_efecto("pasos")
+do Estado.detener_efecto("goteo")
+do Estado.detener_efecto("arrastre")
 => END

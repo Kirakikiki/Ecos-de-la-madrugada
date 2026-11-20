@@ -4,6 +4,8 @@ extends CanvasLayer
 @onready var titulo = $Centro/VBox/Titulo
 @onready var texto = $Centro/VBox/Texto
 
+signal cerrado
+
 func _ready():
 	layer = 80
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -41,3 +43,4 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 		hide()
 		get_tree().paused = false
+		cerrado.emit()

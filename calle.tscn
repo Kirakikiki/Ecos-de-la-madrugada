@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://ddo1tm4mp4f41"]
 
 [ext_resource type="Texture2D" uid="uid://ba6wv3ctx88io" path="res://assets/investigacion/Gemini_Generated_Image_9xvpt09xvpt09xvp.jpg" id="1_2i28s"]
+[ext_resource type="Script" uid="uid://dl50rque2tcj8" path="res://calle.gd" id="1_ddok1"]
 [ext_resource type="Texture2D" uid="uid://dglw8h1eongro" path="res://assets/investigacion/craftpix-net-942642-free-urban-shooter-top-down-pixel-art-mini-game-kit/City_Tileset/Tile.png" id="2_2i28s"]
 [ext_resource type="Texture2D" uid="uid://47tqgkuraqbn" path="res://assets/investigacion/lamparas/streetlight-ornate-off.png" id="3_2io2x"]
 [ext_resource type="Texture2D" uid="uid://dxlltgkkehik6" path="res://assets/investigacion/RELOJ.png" id="3_xqhf4"]
@@ -288,6 +289,7 @@ texture = ExtResource("2_2i28s")
 15:27/0 = 0
 16:27/0 = 0
 17:27/0 = 0
+9:23/0 = 0
 9:10/0 = 0
 10:10/0 = 0
 
@@ -2099,6 +2101,7 @@ texture_region_size = Vector2i(16, 19)
 physics_layer_0/collision_layer = 1
 sources/3 = SubResource("TileSetAtlasSource_ddok1")
 
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xqhf4"]
 texture = ExtResource("5_ddok1")
 7:0/0 = 0
@@ -2659,7 +2662,16 @@ texture = ExtResource("5_ddok1")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_xqhf4")
 
+[sub_resource type="Gradient" id="Gradient_2io2x"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_paa24"]
+gradient = SubResource("Gradient_2io2x")
+width = 256
+height = 256
+fill = 1
+
 [node name="Calle" type="Node2D" unique_id=66165095]
+script = ExtResource("1_ddok1")
 
 [node name="Fondo" type="Sprite2D" parent="." unique_id=113118649]
 texture_repeat = 2
@@ -2719,7 +2731,7 @@ scale = Vector2(0.3, 0.3)
 [node name="Lampara" type="TileMapLayer" parent="." unique_id=1161285909]
 position = Vector2(-267, -142)
 scale = Vector2(0.6, 0.588)
-tile_map_data = PackedByteArray("AAAfABsAAwABAAAAAAAfABwAAwABAAEAAAAfAB0AAwABAAIAAAAfAB4AAwABAAMAAAAfAB8AAwABAAQAAAAfACAAAwABAAUAAAAfACEAAwABAAYAAAAfACIAAwABAAcAAAAfACMAAwABAAgAAAAgABsAAwACAAAAAAAgABwAAwACAAEAAAAgAB0AAwACAAIAAAAgAB4AAwACAAMAAAAgAB8AAwACAAQAAAAgACAAAwACAAUAAAAgACEAAwACAAYAAAAgACIAAwACAAcAAAAgACMAAwACAAgAAAA=")
+tile_map_data = PackedByteArray("AAAfABsAAwABAAAAAAAfABwAAwABAAEAAAAfAB0AAwABAAIAAAAfAB4AAwABAAMAAAAfAB8AAwABAAQAAAAfACAAAwABAAUAAAAfACEAAwABAAYAAAAfACIAAwABAAcAAAAfACMAAwABAAgAAAAgABsAAwACAAAAAAAgABwAAwACAAEAAAAgAB0AAwACAAIAAAAgAB4AAwACAAMAAAAgAB8AAwACAAQAAAAgACAAAwACAAUAAAAgACEAAwACAAYAAAAgACIAAwACAAcAAAAgACMAAwACAAgAAAA0ABwAAwABAAAAAAA0AB0AAwABAAEAAAA0AB4AAwABAAIAAAA0AB8AAwABAAMAAAA0ACAAAwABAAQAAAA0ACEAAwABAAUAAAA0ACIAAwABAAYAAAA0ACMAAwABAAcAAAA0ACQAAwABAAgAAAA1ABwAAwACAAAAAAA1AB0AAwACAAEAAAA1AB4AAwACAAIAAAA1AB8AAwACAAMAAAA1ACAAAwACAAQAAAA1ACEAAwACAAUAAAA1ACIAAwACAAYAAAA1ACMAAwACAAcAAAA1ACQAAwACAAgAAABKABwAAwABAAAAAABKAB0AAwABAAEAAABKAB4AAwABAAIAAABKAB8AAwABAAMAAABKACAAAwABAAQAAABKACEAAwABAAUAAABKACIAAwABAAYAAABKACMAAwABAAcAAABKACQAAwABAAgAAABLABwAAwACAAAAAABLAB0AAwACAAEAAABLAB4AAwACAAIAAABLAB8AAwACAAMAAABLACAAAwACAAQAAABLACEAAwACAAUAAABLACIAAwACAAYAAABLACMAAwACAAcAAABLACQAAwACAAgAAABgABwAAwABAAAAAABgAB0AAwABAAEAAABgAB4AAwABAAIAAABgAB8AAwABAAMAAABgACAAAwABAAQAAABgACEAAwABAAUAAABgACIAAwABAAYAAABgACMAAwABAAcAAABgACQAAwABAAgAAABhABwAAwACAAAAAABhAB0AAwACAAEAAABhAB4AAwACAAIAAABhAB8AAwACAAMAAABhACAAAwACAAQAAABhACEAAwACAAUAAABhACIAAwACAAYAAABhACMAAwACAAcAAABhACQAAwACAAgAAAB2ABwAAwABAAAAAAB2AB0AAwABAAEAAAB2AB4AAwABAAIAAAB2AB8AAwABAAMAAAB2ACAAAwABAAQAAAB2ACEAAwABAAUAAAB2ACIAAwABAAYAAAB2ACMAAwABAAcAAAB2ACQAAwABAAgAAAB3ABwAAwACAAAAAAB3AB0AAwACAAEAAAB3AB4AAwACAAIAAAB3AB8AAwACAAMAAAB3ACAAAwACAAQAAAB3ACEAAwACAAUAAAB3ACIAAwACAAYAAAB3ACMAAwACAAcAAAB3ACQAAwACAAgAAAA=")
 tile_set = SubResource("TileSet_bjhji")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1179264097]
@@ -2729,6 +2741,14 @@ color = Color(0.2901961, 0.32156864, 0.4392157, 1)
 [node name="Decoracion" type="TileMapLayer" parent="." unique_id=992823093]
 tile_map_data = PackedByteArray("AAAOAAUAAAAYAAsAAAAPAAUAAAAZAAsAAAAQAAUAAAAaAAsAAAD4/wgAAAAZABQAAAD4/wkAAAAZABQAAAD5/woAAAAZABQAAAD4/w0AAAAZABQAAAD3/wsAAAAYABQAAAD6/wcAAAAYABIAAAD0/wgAAAAaAA4AAAD1/wkAAAAbAA4AAADz/wcAAAAbAA8AAAD0/wcAAAAaABAAAHAeAAwAAAAYABIAAAATABAAAAAYAAsAAAATABEAAAAYAAwAAAATABIAAAAYAA0AAAAUABAAAAAZAAsAAAAUABEAAAAZAAwAAAAUABIAAAAZAA0AAAAVABAAAAAaAAsAAAAVABEAAAAaAAwAAAAVABIAAAAaAA0AAAAWABEAAAAcAA8AAAAWABIAAAAcAA8AAAAnABEAAAAbAAwAAAAnABIAAAAbAA0AAAAoABEAAAAcAAwAAAAoABIAAAAcAA0AAAApABEAAAAdAAwAAAApABIAAAAdAA0AAAABABEAAAAZABIAAAACABEAAAAaABIAAAA=")
 tile_set = SubResource("TileSet_ddok1")
+
+[node name="LuzFarola1" type="PointLight2D" parent="." unique_id=862838511]
+position = Vector2(70, 147)
+scale = Vector2(0.75911456, 0.8177083)
+color = Color(0.8901961, 0.60784316, 0.23137255, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_paa24")
+texture_scale = 3.0
 
 [node name="Pista" parent="." unique_id=1276313390 instance=ExtResource("5_obptw")]
 position = Vector2(192, 144)
