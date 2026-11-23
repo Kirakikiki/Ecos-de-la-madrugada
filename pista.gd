@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var id = "canasta_pan"    # debe coincidir con una clave de Catalogo.PISTAS
+@export var id = ""    # debe coincidir con una clave de Catalogo.PISTAS
 
 var cerca = false
 
