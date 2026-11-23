@@ -1450,6 +1450,10 @@ shape = SubResource("RectangleShape2D_obptw")
 
 [node name="Puertas" type="Node2D" parent="." unique_id=2104499015]
 
+[node name="Aurelio" parent="." unique_id=634055156 instance=ExtResource("4_2io2x")]
+position = Vector2(69, 99)
+scale = Vector2(0.3, 0.3)
+
 [node name="Lampara" type="TileMapLayer" parent="." unique_id=1161285909]
 position = Vector2(-267, -142)
 scale = Vector2(0.6, 0.588)
@@ -1473,8 +1477,49 @@ texture_scale = 3.0
 [node name="Pista" parent="." unique_id=1276313390 instance=ExtResource("5_obptw")]
 position = Vector2(231, 165)
 
-[node name="Visor" parent="." unique_id=895786614 instance=ExtResource("6_of1hf")]
+[node name="Pista2" parent="." unique_id=1334216409 instance=ExtResource("5_obptw")]
+position = Vector2(379, 168)
+id = "soga_campana"
 
-[node name="Aurelio" parent="." unique_id=634055156 instance=ExtResource("4_2io2x")]
-position = Vector2(69, 99)
-scale = Vector2(0.3, 0.3)
+[node name="Pista3" parent="." unique_id=576773157 instance=ExtResource("5_obptw")]
+position = Vector2(637, 201)
+id = "reloj_torre"
+
+[node name="Pista4" parent="." unique_id=1526873453 instance=ExtResource("5_obptw")]
+position = Vector2(863, 202)
+id = "poste_farola_7"
+
+[node name="Pista5" parent="." unique_id=69544928 instance=ExtResource("5_obptw")]
+position = Vector2(510, 251)
+id = "dibujo_nino"
+
+[node name="Pista6" parent="." unique_id=998415443 instance=ExtResource("5_obptw")]
+position = Vector2(139, 248)
+id = "foto_apagon"
+
+[node name="Pista7" parent="." unique_id=571245293 instance=ExtResource("5_obptw")]
+position = Vector2(467, 175)
+id = "zapato_barro"
+
+[node name="Pista8" parent="." unique_id=22275655 instance=ExtResource("5_obptw")]
+position = Vector2(775, 171)
+id = "llavero"
+
+[node name="Pista9" parent="." unique_id=301082524 instance=ExtResource("5_obptw")]
+position = Vector2(304, 257)
+id = "tabla_estrella"
+
+[node name="Pista10" parent="." unique_id=620294438 instance=ExtResource("5_obptw")]
+position = Vector2(900, 168)
+id = "carta_marta"
+
+[node name="Pista11" parent="." unique_id=167018758 instance=ExtResource("5_obptw")]
+position = Vector2(787, 262)
+id = "foto_rota"
+
+[node name="Pista12" parent="." unique_id=2143974010 instance=ExtResource("5_obptw")]
+position = Vector2(40, 234)
+id = "llave_sotano"
+
+[node name="Visor" parent="." unique_id=895786614 instance=ExtResource("6_of1hf")]
+visible = false
