@@ -38,13 +38,14 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 		
 		var esNueva = not Estado.tiene_hallazgo(id)
+		var costo = Catalogo.PISTAS[id].get("costo", 1)
 		
 		# 1 pista nueva cuesta 1PA; las que ya estan examindas no cuestan
 		if esNueva:
-			if not Estado.tiene_pa(1):
+			if not Estado.tiene_pa(costo):
 				print("Sin puntos de acción")
 				return
-			Estado.gastar_pa(1)
+			Estado.gastar_pa(costo)
 			Estado.registrar_hallazgo(id)
 		
 		$Brillo.hide()
@@ -59,6 +60,3 @@ func _unhandled_input(event):
 				Estado.terminar_investigacion()
 		elif esNueva and Estado.pa <= 0:
 			Estado.terminar_investigacion()
-		
-		
-		
