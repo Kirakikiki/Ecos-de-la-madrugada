@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ba70kpipobsi8"]
 
-[ext_resource type="Script" uid="uid://ch8k438c2l25l" path="res://Diario/Diario.gd" id="1_bdnjn"]
+[ext_resource type="Script" uid="uid://seyjbss8djlr" path="res://Diario/Diario.gd" id="1_bdnjn"]
 [ext_resource type="Theme" uid="uid://0ddl03q7h485" path="res://Diario/theme.tres" id="1_tr4tx"]
 [ext_resource type="Texture2D" uid="uid://bjugnoruejxad" path="res://Diario/imagenes/diario1.png" id="1_xlpmq"]
 [ext_resource type="PackedScene" uid="uid://5ctgj0q25fpx" path="res://Diario/slot_palabra.tscn" id="2_tr4tx"]
@@ -41,18 +41,22 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1070414683]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -16.0
-offset_bottom = 16.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -93.0
+offset_right = 136.0
+offset_bottom = 93.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_tr4tx")
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 5
 
 [node name="Panel" type="PanelContainer" parent="Control/MarginContainer" unique_id=1886816054]
 layout_mode = 2
@@ -81,8 +85,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
 columns = 2
 
 [node name="SlotPalabra" parent="Control/MarginContainer/Panel/HBoxContainer/Palabras/VBoxContainer/Grid" unique_id=2040942076 instance=ExtResource("2_tr4tx")]
