@@ -1,4 +1,3 @@
-
 extends Node
 
 signal musica_cambio(nombre)
@@ -9,9 +8,10 @@ signal pa_cambio(valor)
 signal palabra_guardada(palabra)
 signal hallazgo_registrado(id)
 
-const ESCENA_CABINA = "res://radio.tscn"        
-const ESCENA_EXPLORACION = "res://calle.tscn"  
+const ESCENA_CABINA = "res://radio.tscn"
+const ESCENA_EXPLORACION = "res://calle.tscn"
 const PA_MAXIMO = 3
+const CONFIANZA_INICIAL = 2
 
 const ORDEN = {
 	1: ["ernesto", "rosa", "gaspar", "marta", "nino"],
@@ -25,7 +25,7 @@ const ORDEN = {
 var noche = 1
 var diario: Array[String] = []
 var credibilidad = 0
-var confianza_nino: int = 0
+var confianza_nino: int = CONFIANZA_INICIAL
 var pistas: Array = []
 var lugares: Dictionary = {}
 var autoridades_avisadas: bool = false
@@ -38,7 +38,28 @@ var hallazgos: Array[String] = []    # pistas ya examinadas en la calle
 var reproductores_efectos: Dictionary = {}
 var acusado_elegido: String = ""
 
-# 
+
+# ---------------------------------------------------------
+# REINICIAR PARTIDA (llamar al pulsar "Nueva partida")
+# ---------------------------------------------------------
+func reiniciar_partida() -> void:
+	noche = 1
+	diario.clear()
+	credibilidad = 0
+	confianza_nino = CONFIANZA_INICIAL
+	pistas.clear()
+	lugares.clear()
+	autoridades_avisadas = false
+	marta_confrontada = false
+	hallazgos.clear()
+	acusado_elegido = ""
+	reiniciar_pa()
+	detener_todos_los_efectos()
+
+
+# ---------------------------------------------------------
+# HALLAZGOS
+# ---------------------------------------------------------
 func registrar_hallazgo(id: String):
 	if id not in hallazgos:
 		hallazgos.append(id)
@@ -46,27 +67,33 @@ func registrar_hallazgo(id: String):
 
 func tiene_hallazgo(id: String) -> bool:
 	return id in hallazgos
-	
-#Cambio de escena 
+
+
+# ---------------------------------------------------------
+# CAMBIO DE ESCENA
+# ---------------------------------------------------------
 func ir_a_cabina():
 	detener_todos_los_efectos()
-	get_tree().change_scene_to_file(ESCENA_CABINA)
+	Transicion.cambiar_escena(ESCENA_CABINA, "Noche " + str(noche))
 
 func ir_a_exploracion():
 	detener_todos_los_efectos()
-	get_tree().change_scene_to_file(ESCENA_EXPLORACION)
+	Transicion.cambiar_escena(ESCENA_EXPLORACION, "Saliendo a la calle...")
 
 func terminar_investigacion():
 	reiniciar_pa()
 	siguiente_noche()
 	ir_a_cabina()
 
-#Puntos de accion
+
+# ---------------------------------------------------------
+# PUNTOS DE ACCION
+# ---------------------------------------------------------
 func tiene_pa(n: int = 1) -> bool:
 	return pa >= n
 
 func gastar_pa(n):
-	pa= maxi(pa - n, 0)
+	pa = maxi(pa - n, 0)
 	print("PA restantes: ", pa)
 	pa_cambio.emit(pa)
 
@@ -74,26 +101,39 @@ func reiniciar_pa():
 	pa = PA_MAXIMO
 	pa_cambio.emit(pa)
 
-#aqui esta la noche 
+
+# ---------------------------------------------------------
+# NOCHE
+# ---------------------------------------------------------
 func siguiente_noche():
 	noche += 1
 
-#aqui esta la credibilidad 
+
+# ---------------------------------------------------------
+# CREDIBILIDAD Y CONFIANZA
+# ---------------------------------------------------------
 func sumar_credibilidad(n):
 	credibilidad += n
 
 func cambiar_credibilidad(n):
 	sumar_credibilidad(n)
 
-#aqui esta la confianza 
 func cambiar_confianza_nino(n: int):
 	confianza_nino += n
 
-#
+
+# ---------------------------------------------------------
+# PISTAS
+# ---------------------------------------------------------
 func agregar_pista(id: String):
 	if id not in pistas:
 		pistas.append(id)
-		
+
+# Devuelve un numero simple para usar en los dialogos
+# (evita el error "Invalid operands 'Array' and 'int'")
+func num_pistas() -> int:
+	return pistas.size()
+
 func guardar_palabra(palabra: String):
 	if palabra not in diario:
 		diario.append(palabra)
@@ -101,24 +141,28 @@ func guardar_palabra(palabra: String):
 
 func tiene_palabra(palabra: String) -> bool:
 	return palabra in diario
+
 func marcar_lugar(id, peligroso = false):
 	if peligroso is String:
 		peligroso = (peligroso == "peligroso")
 	lugares[id] = peligroso
-	
+
 
 # Una sola pregunta para puertas y objetos:
 func desbloqueado(id: String) -> bool:
 	return id in diario or id in pistas or lugares.has(id)
 
-#verdadero si cumple uno de los requisitos de la lista
+# Verdadero si cumple uno de los requisitos de la lista
 func desbloqueado_alguno(lista: Array) -> bool:
 	for r in lista:
 		if desbloqueado(r):
 			return true
 	return false
 
-#eventos de la historia 
+
+# ---------------------------------------------------------
+# EVENTOS DE LA HISTORIA
+# ---------------------------------------------------------
 func avisar_autoridades():
 	autoridades_avisadas = true
 
@@ -144,9 +188,12 @@ func culpar(sospechoso: String) -> void:
 	acusado_elegido = sospechoso
 	print("El jugador ha culpado a: ", acusado_elegido)
 	juego_terminado.emit(acusado_elegido)
-	get_tree().change_scene_to_file("res://final_placeholder.tscn")
+	Transicion.cambiar_escena("res://final_placeholder.tscn")
 
-# REPRODUCIR EFECTOS DE SONIDO
+
+# ---------------------------------------------------------
+# EFECTOS DE SONIDO
+# ---------------------------------------------------------
 func reproducir_efecto(nombre: String, volumen_db: float = 0.0) -> void:
 	var ruta := "res://audio/efectos_dialogos/" + nombre + ".mp3"
 	if not ResourceLoader.exists(ruta):
@@ -162,18 +209,16 @@ func reproducir_efecto(nombre: String, volumen_db: float = 0.0) -> void:
 		reproductores_efectos[nombre] = reproductor
 	else:
 		reproductor = reproductores_efectos[nombre]
-		
+
 	reproductor.stream = load(ruta)
 	reproductor.volume_db = volumen_db
 	reproductor.play()
 
-# DETENER UN EFECTO
 func detener_efecto(nombre: String) -> void:
 	if reproductores_efectos.has(nombre):
 		var reproductor: AudioStreamPlayer = reproductores_efectos[nombre]
 		reproductor.stop()
 
-# DETENER TODOS LOS EFECTOS
 func detener_todos_los_efectos() -> void:
 	for nombre in reproductores_efectos:
 		detener_efecto(nombre)
