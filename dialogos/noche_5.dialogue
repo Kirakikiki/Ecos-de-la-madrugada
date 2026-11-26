@@ -1,4 +1,5 @@
-# Noche quinta y se despiertan nuevas curiosidades y se habren las contradicciones de marta 
+# Noche 5 - Se abren las contradicciones de Marta
+# Orden: Marta - niño
 
 ~ llamada_marta
 do Estado.cambiar_musica("tension")
@@ -19,6 +20,7 @@ Marta: Me dijeron que está haciendo preguntas sobre la casa vieja.
 	Marta: ¿No va a decir nada? …Entonces ya lo sabe.
 	do Estado.agregar_pista("marta_se_delata")
 	=> marta_confrontacion
+
 ~ marta_confrontacion
 Marta: Usted no sabe lo que ha pasado en esta familia.
 Marta: Mi hijo no es una mala persona. Solo… ha cometido errores.
@@ -29,6 +31,7 @@ Marta: Mi hijo no es una mala persona. Solo… ha cometido errores.
 	Marta: ¡No! Estoy intentando encontrarlo.
 	do Estado.cambiar_credibilidad(1)
 	=> marta_fin
+
 ~ marta_fin
 Marta: No vuelva a llamar a esa casa.
 do Estado.reproducir_efecto("colgar", -4.0)
@@ -39,7 +42,7 @@ do Estado.detener_efecto("respiracion")
 
 ~ llamada_nino
 do Estado.cambiar_musica("tension")
-do Estado.estatica(0.9)
+do Estado.estatica(-10.0)
 Niño: Ya sé quién era.
 - ¿Quién te llevó?
 	Niño: El hijo de la señora que vino a la radio. La que preguntaba por su hijo.
@@ -53,6 +56,7 @@ Niño: Ya sé quién era.
 	Niño: …Por favor, no me deje solo ahora.
 	do Estado.cambiar_confianza_nino(-1)
 	=> nino_confirma
+
 ~ nino_confirma
 do Estado.reproducir_efecto("pasos", -10.0)
 do Estado.reproducir_efecto("puerta", -8.0)
