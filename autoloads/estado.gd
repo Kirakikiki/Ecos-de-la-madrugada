@@ -70,15 +70,15 @@ func tiene_hallazgo(id: String) -> bool:
 
 
 # ---------------------------------------------------------
-# CAMBIO DE ESCENA
+# CAMBIO DE ESCENA (todo pasa por Transicion)
 # ---------------------------------------------------------
 func ir_a_cabina():
 	detener_todos_los_efectos()
-	Transicion.cambiar_escena(ESCENA_CABINA, "Noche " + str(noche))
+	Transicion.cambiar_escena(ESCENA_CABINA, "Noche %d" % noche)
 
 func ir_a_exploracion():
 	detener_todos_los_efectos()
-	Transicion.cambiar_escena(ESCENA_EXPLORACION, "Saliendo a la calle...")
+	Transicion.cambiar_escena(ESCENA_EXPLORACION)
 
 func terminar_investigacion():
 	reiniciar_pa()
