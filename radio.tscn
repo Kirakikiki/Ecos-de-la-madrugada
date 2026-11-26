@@ -18,7 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://cf3qmvqtn1djo" path="res://assets/cabina/planta.png" id="16_kshn8"]
 [ext_resource type="Texture2D" uid="uid://bmh87eggnquhw" path="res://assets/cabina/hoja.png" id="17_to5w0"]
 [ext_resource type="Script" uid="uid://cs02it0pu08x1" path="res://llamada.gd" id="18_inxrw"]
+[ext_resource type="Script" uid="uid://dbwsyw4h32l0r" path="res://hub.gd" id="20_h5dtr"]
 [ext_resource type="AudioStream" uid="uid://fwrh5acyxbwo" path="res://audio/sonido_llamada.mp3" id="20_p30gs"]
+[ext_resource type="Shader" uid="uid://bse6k6rgrjj2r" path="res://radio.gdshader" id="21_h5dtr"]
 
 [sub_resource type="Image" id="Image_ge2qh"]
 data = {
@@ -681,6 +683,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6jp68"]
+shader = ExtResource("21_h5dtr")
+
+[sub_resource type="Theme" id="Theme_23p2w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3at27"]
+shader = ExtResource("21_h5dtr")
+
+[sub_resource type="Theme" id="Theme_nksgg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v33u1"]
+shader = ExtResource("21_h5dtr")
+
+[sub_resource type="Theme" id="Theme_rf078"]
+
 [node name="Radio" type="Node2D" unique_id=794787448]
 script = ExtResource("1_ge2qh")
 
@@ -842,3 +859,54 @@ stream = ExtResource("20_p30gs")
 [node name="Musica" type="AudioStreamPlayer" parent="." unique_id=153564750]
 
 [node name="calma" type="AudioStreamPlayer" parent="." unique_id=1919558764]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1756414754]
+
+[node name="HUB" type="Control" parent="CanvasLayer" unique_id=446729836]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("20_h5dtr")
+
+[node name="BarraPuntosAccion" type="PanelContainer" parent="CanvasLayer/HUB" unique_id=1720385218]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = -105.0
+offset_right = 79.0
+offset_bottom = -65.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUB/BarraPuntosAccion" unique_id=1593086643]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HUB/BarraPuntosAccion/VBoxContainer" unique_id=2057867020]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUB/BarraPuntosAccion/VBoxContainer" unique_id=1597826967]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Punto1" type="ColorRect" parent="CanvasLayer/HUB/BarraPuntosAccion/VBoxContainer/HBoxContainer" unique_id=1569770933]
+material = SubResource("ShaderMaterial_6jp68")
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme = SubResource("Theme_23p2w")
+
+[node name="Punto2" type="ColorRect" parent="CanvasLayer/HUB/BarraPuntosAccion/VBoxContainer/HBoxContainer" unique_id=1313847630]
+material = SubResource("ShaderMaterial_3at27")
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme = SubResource("Theme_nksgg")
+
+[node name="Punto3" type="ColorRect" parent="CanvasLayer/HUB/BarraPuntosAccion/VBoxContainer/HBoxContainer" unique_id=1915147706]
+material = SubResource("ShaderMaterial_v33u1")
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_rf078")

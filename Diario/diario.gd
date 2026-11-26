@@ -29,7 +29,25 @@ func _ready():
 	siguiente.pressed.connect(func(): _pasarHoja(1))
 	Estado.palabra_guardada.connect(func(_p): if visible: actualizar())
 	Estado.hallazgo_registrado.connect(func(_i): if visible: actualizar())
+	print("Resolución del juego: ", get_viewport().get_visible_rect().size)
 	
+	await get_tree().process_frame
+	print("Resolución: ", get_viewport().get_visible_rect().size)
+	print("MarginContainer: ", $Control/MarginContainer.size)
+	print("Panel: ", $Control/MarginContainer/Panel.size)
+	var contenedor = $Control/MarginContainer
+
+	contenedor.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	contenedor.custom_minimum_size = Vector2.ZERO
+	contenedor.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+
+	contenedor.position = Vector2(24, 4)
+	contenedor.size = Vector2(296, 152)
+
+	await get_tree().process_frame
+
+	print("Tamaño final: ", contenedor.size)
+	print("Posición final: ", contenedor.position)
 func _input(event):
 	if event.is_action_pressed("diario"):
 		get_viewport().set_input_as_handled()
