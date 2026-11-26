@@ -1752,6 +1752,8 @@ func _compare(operator: String, first_value: Variant, second_value: Variant) -> 
 			elif second_value == null:
 				return true
 			else:
+
+
 				return first_value >= second_value
 		&"==":
 			if first_value == null:

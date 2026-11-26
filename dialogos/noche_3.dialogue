@@ -1,4 +1,5 @@
-# Se continua con la noche 3 que se llamara - Las historias del pueblo 
+# Noche 3 - Las historias del pueblo
+# Orden: Ernesto - Rosa - Marta
 
 ~ llamada_ernesto
 do Estado.cambiar_musica("calma")
@@ -16,8 +17,10 @@ Ernesto: Anoche encontré barro junto a la puerta de la panadería.
 - (silencio)
 	Ernesto: …Ya sé, ya sé. Lo cuento todo con rodeos.
 	=> cierre_ernesto
+
 ~ cierre_ernesto
 do Estado.detener_efecto("horno")
+do Estado.detener_efecto("arrastre")
 Ernesto: Hay cosas que uno prefiere no ver. Aunque después vuelven en los sueños.
 => END
 
@@ -36,8 +39,10 @@ Rosa: Encontré una fotografía vieja de la noche del apagón.
 	Rosa: Le dejaré la foto en la mesa del fondo. Para que la mire cuando pueda.
 	do Estado.agregar_pista("foto_apagon")
 	=> cierre_rosa
+
 ~ cierre_rosa
 do Estado.detener_efecto("viento")
+do Estado.detener_efecto("papel")
 Rosa: La gente cree que el tiempo borra las cosas. A veces solo las esconde.
 => END
 
@@ -58,10 +63,9 @@ Marta: ¿Ha sabido algo de mi hijo?
 	Marta: ¿Hola? …Perdone, me pongo nerviosa cuando no contestan.
 	do Estado.cambiar_credibilidad(-1)
 	=> cierre_marta
+
 ~ cierre_marta
 do Estado.detener_efecto("respiracion")
 do Estado.detener_efecto("interferencia")
-do Estado.detener_efecto("arrastre")
-do Estado.detener_efecto("papel")
 Marta: Si escucha algo, no espere hasta mañana. Se lo suplico.
 => END
