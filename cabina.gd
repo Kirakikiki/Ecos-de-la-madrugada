@@ -65,7 +65,7 @@ func terminar_noche():
 	if Estado.noche >= 6:
 		get_tree().change_scene_to_file("res://pantalla_acusacion.tscn")
 	else:
-		get_tree().change_scene_to_file("res://calle.tscn")
+		Estado.ir_a_exploracion()
 	
 func _on_estatica(intensidad: float) -> void:
 	Estado.reproducir_efecto("estatica", intensidad)
