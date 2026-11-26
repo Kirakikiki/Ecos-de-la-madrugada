@@ -27,7 +27,7 @@ Niño: ¿Es usted? El de la radio…
 
 ~ nino_detalles
 do Estado.reproducir_efecto("arrastre", -10.0)
-Niño: Vi una luz por debajo de la puerta. Después escuché que arrastraban algo.
+Niño: Vi una luz por debajo de la [wave][url=puerta]puerta[/url][/wave]. Después escuché que arrastraban algo.
 Niño: No era una caja… creo que era algo mucho más pesado.
 - ¿Viste la cara de ese hombre?
 	Niño: Solo su sombra. Era alto. Llevaba algo en una mano.
@@ -54,7 +54,7 @@ do Estado.detener_efecto("arrastre")
 
 ~ llamada_gaspar
 do Estado.cambiar_musica("calma")
-Gaspar: Anoche volví a revisar la farola siete.
+Gaspar: Anoche volví a revisar la [wave][url=farola]farola[/url][/wave]siete.
 - ¿Encontró algo?
 	do Estado.reproducir_efecto("farola", -8.0)
 	Gaspar: Una marca en el poste. Como si alguien hubiera apoyado una herramienta metálica.
