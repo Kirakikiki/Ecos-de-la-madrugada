@@ -11,7 +11,7 @@ signal hallazgo_registrado(id)
 
 const ESCENA_CABINA = "res://radio.tscn"        
 const ESCENA_EXPLORACION = "res://calle.tscn"  
-const PA_MAXIMO = 1
+const PA_MAXIMO = 3
 
 const ORDEN = {
 	1: ["ernesto", "rosa", "gaspar", "marta", "nino"],

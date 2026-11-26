@@ -1,5 +1,5 @@
-# La noche 1 con las primeras llamadas 
-# Orden que va hacer en esta llamada son: Ernesto - Rosa - Gaspar - Marta - niño
+# Noche 1 - Las primeras llamadas
+# Orden: Ernesto - Rosa - Gaspar - Marta - niño
 
 ~ llamada_ernesto
 do Estado.cambiar_musica("calma")
@@ -19,8 +19,10 @@ Ernesto: Hoy me sobraron cuarenta [wave][url=panes]panes[/url][/wave]. Siempre m
 	do Estado.cambiar_credibilidad(-1)
 	do Estado.detener_efecto("horno")
 	=> END
+
 ~ cierre_ernesto
 do Estado.detener_efecto("horno")
+do Estado.detener_efecto("campanas")
 Ernesto: Usted siga hablando, que se agradece oír una voz.
 => END
 
@@ -41,8 +43,10 @@ Rosa: Locutor, ¿usted sabe qué hora es? El reloj de la torre marca las tres y 
 	Rosa: Yo tampoco pregunté. Eso es lo que me pesa.
 	do Estado.agregar_pista("reloj_3_12")
 	=> cierre_rosa
+
 ~ cierre_rosa
 do Estado.detener_efecto("reloj")
+do Estado.detener_efecto("apagado")
 Rosa: Buenas noches, locutor. Que no se le detenga el reloj.
 => END
 
@@ -57,13 +61,14 @@ Gaspar: Aquí Gaspar, el de las farolas. Hago mi ronda y las cuento. Anoche eran
 	do Estado.marcar_lugar("farola_7", "examinable")
 	=> cierre_gaspar
 - (silencio)
-	Gaspar: …Mejor no se lo digo. [wait=2] 
-	do Estado.marcar_lugar("farola_7", "examinable")
+	Gaspar: …Mejor no se lo digo. [wait=2]
 	Gaspar: Está bien. Vi a alguien bajo la siete. Tenía una [wave][url=mano]mano[/url][/wave] levantada, como saludando.
 	do Estado.marcar_lugar("farola_7", "examinable")
 	do Estado.agregar_pista("figura_farola_7")
 	=> cierre_gaspar
+
 ~ cierre_gaspar
+do Estado.detener_efecto("farola")
 Gaspar: Buenas noches. Si pasa por ahí, no mire mucho las lámparas. Es un consejo.
 => END
 
@@ -87,14 +92,15 @@ Marta: Soy Marta. Estoy buscando a mi hijo. No volvió a casa.
 	Marta: ¿Sigue ahí? Disculpe… no he dormido nada.
 	do Estado.cambiar_credibilidad(-1)
 	=> cierre_marta
+
 ~ cierre_marta
+do Estado.detener_efecto("respiracion")
 Marta: Gracias por escucharme. Si recibe alguna noticia, por favor, avíseme.
 => END
 
 ~ llamada_nino
 do Estado.cambiar_musica("tension")
 do Estado.estatica(-14.0)
-do Estado.reproducir_efecto("estatica", -14.0)
 Niño: ¿Hola...? ¿Hay alguien?
 - Sí, te escucho. ¿Quién eres?
 	Niño: No puedo decir mi nombre. Estoy escondido.
@@ -120,6 +126,7 @@ Niño: ¿Hola...? ¿Hay alguien?
 	Niño: …¿Sigue ahí? Respira muy bajito, por favor.
 	do Estado.cambiar_confianza_nino(-1)
 	=> nino_pasos
+
 ~ nino_pasos
 do Estado.reproducir_efecto("pasos", -5.0)
 Niño: Espera… [wait=2] Escuché pasos.
@@ -127,9 +134,6 @@ do Estado.reproducir_efecto("telefono", -8.0)
 Niño: Tengo que esconder el teléfono. No cuelgue…
 do Estado.detener_efecto("estatica")
 do Estado.detener_efecto("respiracion")
+do Estado.detener_efecto("pasos")
+do Estado.detener_efecto("telefono")
 => END
-
-
-
-
-
