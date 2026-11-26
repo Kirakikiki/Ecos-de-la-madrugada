@@ -63,16 +63,21 @@ func terminar_investigacion():
 
 #Puntos de accion
 func tiene_pa(n: int = 1) -> bool:
-	return pa >= n
+	return n > 0 and pa >= n
 
-func gastar_pa(n):
-	pa= maxi(pa - n, 0)
+func gastar_pa(n: int = 1) -> bool:
+	if not tiene_pa(n):
+		return false
+
+	pa -= n
 	print("PA restantes: ", pa)
 	pa_cambio.emit(pa)
+	return true
 
 func reiniciar_pa():
 	pa = PA_MAXIMO
 	pa_cambio.emit(pa)
+
 
 #aqui esta la noche 
 func siguiente_noche():
