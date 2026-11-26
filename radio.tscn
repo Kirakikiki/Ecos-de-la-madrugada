@@ -29,7 +29,7 @@ data = {
 "width": 160
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_os6jd"]
+[sub_resource type="ImageTexture" id="ImageTexture_p30gs"]
 image = SubResource("Image_ge2qh")
 
 [sub_resource type="GDScript" id="GDScript_p30gs"]
@@ -89,7 +89,7 @@ data = {
 "width": 160
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_6jp68"]
+[sub_resource type="ImageTexture" id="ImageTexture_os6jd"]
 image = SubResource("Image_h5dtr")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q1flp"]
@@ -696,7 +696,7 @@ scale = Vector2(2.0718749, 2.1441855)
 color = Color(0.8901961, 0.60784316, 0.23137255, 1)
 energy = 1.15
 shadow_enabled = true
-texture = SubResource("ImageTexture_os6jd")
+texture = SubResource("ImageTexture_p30gs")
 script = SubResource("GDScript_p30gs")
 
 [node name="Lampara2" type="PointLight2D" parent="." unique_id=112204889]
@@ -706,7 +706,7 @@ scale = Vector2(0.8682793, 0.58424175)
 color = Color(0.8901961, 0.60784316, 0.23137255, 1)
 energy = 1.15
 shadow_enabled = true
-texture = SubResource("ImageTexture_6jp68")
+texture = SubResource("ImageTexture_os6jd")
 script = SubResource("GDScript_p30gs")
 
 [node name="Tabla" type="Sprite2D" parent="." unique_id=1979568411]
