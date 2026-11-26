@@ -4,7 +4,7 @@
 ~ llamada_marta
 do Estado.cambiar_musica("tension")
 do Estado.reproducir_efecto("respiracion", -16.0)
-Marta: Me dijeron que está haciendo preguntas sobre la casa vieja.
+Marta: Me dijeron que está haciendo preguntas sobre la [wave][url=casa]casa vieja[/url][/wave].
 - Usted dijo que hacía años que no iba allí.
 	Marta: Y es verdad. No entiendo por qué insiste.
 	do Estado.agregar_pista("marta_contradice")
@@ -23,7 +23,7 @@ Marta: Me dijeron que está haciendo preguntas sobre la casa vieja.
 
 ~ marta_confrontacion
 Marta: Usted no sabe lo que ha pasado en esta familia.
-Marta: Mi hijo no es una mala persona. Solo… ha cometido errores.
+Marta: Mi hijo no es una mala persona. Solo… ha cometido [wave][url=errores]errores[/url][/wave].
 - ¿Qué clase de errores?
 	Marta: No voy a hablar de eso por teléfono.
 	=> marta_fin

@@ -4,7 +4,7 @@
 ~ llamada_ernesto
 do Estado.cambiar_musica("calma")
 do Estado.reproducir_efecto("horno", -14.0)
-Ernesto: Anoche encontré barro junto a la puerta de la panadería.
+Ernesto: Anoche encontré [wave][url=barro]barro[/url][/wave] junto a la puerta de la panadería.
 - ¿Alguien entró?
 	Ernesto: No vi a nadie. Pero las huellas iban hacia el camino viejo.
 	do Estado.marcar_lugar("camino_viejo", "examinable")
@@ -26,7 +26,7 @@ Ernesto: Hay cosas que uno prefiere no ver. Aunque después vuelven en los sueñ
 
 ~ llamada_rosa
 do Estado.reproducir_efecto("viento", -20.0)
-Rosa: Encontré una fotografía vieja de la noche del apagón.
+Rosa: Encontré una [wave][url=fotografia]fotografía[/url][/wave] vieja de la noche del apagón.
 - ¿Qué aparece en ella?
 	Rosa: La calle de la torre. Al fondo se ve una persona junto a una casa abandonada.
 	do Estado.agregar_pista("foto_apagon")

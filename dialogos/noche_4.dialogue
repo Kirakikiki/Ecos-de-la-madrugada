@@ -4,7 +4,7 @@
 ~ llamada_nino
 do Estado.cambiar_musica("tension")
 do Estado.estatica(-12.0)
-Niño: Pude mirar por una rendija.
+Niño: Pude mirar por una [wave][url=rendija]rendija[/url][/wave].
 - ¿Qué viste?
 	Niño: Una puerta con una marca… como una estrella torcida. Creo que ya la había visto antes.
 	do Estado.agregar_pista("estrella_torcida")
@@ -44,7 +44,7 @@ do Estado.reproducir_efecto("farola", -8.0)
 do Estado.reproducir_efecto("apagado", -6.0)
 Gaspar: La farola siete volvió a apagarse. Esta vez me quedé escondido.
 - ¿Qué vio?
-	Gaspar: Un hombre alto. Se detuvo debajo de la luz y miró hacia la torre.
+	Gaspar: Un hombre alto. Se detuvo debajo de la luz y miró hacia la [wave][url=torre]torre[/url][/wave].
 	do Estado.agregar_pista("hombre_alto_farola")
 	=> cierre_gaspar
 - ¿Pudo reconocerlo?
