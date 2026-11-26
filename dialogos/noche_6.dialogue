@@ -49,11 +49,8 @@ if Estado.confianza_nino <= 0 and not Estado.autoridades_avisadas
 	=> final_4_ultima_llamada
 elif Estado.marta_confrontada and not Estado.autoridades_avisadas
 	=> final_3_huida
-<<<<<<< HEAD
-elif Estado.pistas.size() >= 6 and Estado.autoridades_avisadas
-=======
+
 elif Estado.num_pistas() >= 6 and Estado.autoridades_avisadas
->>>>>>> d44b10a (Transicion entre cabina y calle)
 	=> final_1_rescate
 else
 	=> final_2_tarde
@@ -81,8 +78,6 @@ Niño: …Usted no contestó.
 Niño: Yo seguí llamando. Hasta que ya no hubo nadie.
 do Estado.reproducir_efecto("ocupado", -8.0)
 do Estado.terminar_juego("silencio")
-<<<<<<< HEAD
+
 => END
-=======
-=> END
->>>>>>> d44b10a (Transicion entre cabina y calle)
+
