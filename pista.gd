@@ -45,6 +45,13 @@ func _unhandled_input(event):
 			if not Estado.tiene_pa(costo):
 				print("Sin puntos de acción")
 				return
+			
+			if costo >= 2 and id not in Estado.retos_superados: 
+				print("4. yendo al reto")
+				Estado.reto_actual = id
+				Estado.ir_a_reto()
+				return
+			
 			Estado.gastar_pa(costo)
 			Estado.registrar_hallazgo(id)
 		
