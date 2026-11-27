@@ -22,6 +22,7 @@ DialogueManager="*uid://c3rodes2l3gxb"
 Diario="*uid://ba70kpipobsi8"
 AvisoPalabra="*uid://dhyn3yqytkp0a"
 Catalogo="*uid://w8op8p0mjbvc"
+Transicion="*uid://byh4ixkn4y5mn"
 
 [dialogue_manager]
 
@@ -43,6 +44,10 @@ project/assembly_name="Juego del equipo (3D)"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
+[gui]
+
+theme/custom="Mystery Quest"
 
 [input]
 
