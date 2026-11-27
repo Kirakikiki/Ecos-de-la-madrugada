@@ -212,6 +212,10 @@ id = "canasta_pan"
 position = Vector2(726, 175)
 id = "soga_campana"
 
+[node name="Pista3" parent="." unique_id=2039576620 instance=ExtResource("5_obptw")]
+position = Vector2(379, 168)
+id = "soga_campana"
+
 [node name="Pista4" parent="." unique_id=576773157 instance=ExtResource("5_obptw")]
 position = Vector2(637, 201)
 id = "reloj_torre"

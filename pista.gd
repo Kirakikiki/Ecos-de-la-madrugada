@@ -42,7 +42,7 @@ func _unhandled_input(event):
 		
 		# 1 pista nueva cuesta 1PA; las que ya estan examindas no cuestan
 		if esNueva:
-			if not Estado.tiene_pa(costo):
+			if not Estado.gastar_pa(costo):
 				print("Sin puntos de acción")
 				return
 			
@@ -54,6 +54,8 @@ func _unhandled_input(event):
 			
 			Estado.gastar_pa(costo)
 			Estado.registrar_hallazgo(id)
+
+		Estado.registrar_hallazgo(id)
 		
 		$Brillo.hide()
 		
