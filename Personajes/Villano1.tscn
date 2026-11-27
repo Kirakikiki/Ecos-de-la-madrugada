@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvri64ik2d2ii"]
 
-[ext_resource type="Texture2D" uid="uid://rviodr4sj3nf" path="res://Sprits/Villano1/Villano1.png" id="1_81snf"]
+[ext_resource type="Texture2D" uid="uid://rviodr4sj3nf" path="res://Personajes/Sprits/Villano1/Villano1.png" id="1_81snf"]
 
 [sub_resource type="Animation" id="Animation_qbrb6"]
 length = 0.001
@@ -106,3 +106,6 @@ vframes = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1695524769]
 position = Vector2(0, 14.5)
 shape = SubResource("RectangleShape2D_gs08a")
+
+[node name="boca" type="Marker2D" parent="." unique_id=1110671133]
+position = Vector2(101, 74)
