@@ -8,8 +8,9 @@ signal pa_cambio(valor)
 signal palabra_guardada(palabra)
 signal hallazgo_registrado(id)
 
-const ESCENA_CABINA = "res://radio.tscn"
-const ESCENA_EXPLORACION = "res://calle.tscn"
+const ESCENA_CABINA = "res://radio.tscn"        
+const ESCENA_EXPLORACION = "res://calle.tscn"  
+const ESCENA_RETO = "res://reto.tscn" #Ruta de la escena del reto
 const PA_MAXIMO = 3
 const CONFIANZA_INICIAL = 2
 
@@ -33,6 +34,10 @@ var marta_confrontada: bool = false
 var tutorial_visto = false
 var pa = PA_MAXIMO
 var hallazgos: Array[String] = []    # pistas ya examinadas en la calle
+
+# VARIABLES PARA EL RETO 
+var reto_actual : String = "" # id de la pista que se intenta conseguir
+var retos_superados : Array[String] = [] # lista de pistas de las que el reto ya se gano
 
 # Reproductores de efectos de sonido
 var reproductores_efectos: Dictionary = {}
@@ -230,3 +235,14 @@ func detener_efecto(nombre: String) -> void:
 func detener_todos_los_efectos() -> void:
 	for nombre in reproductores_efectos:
 		detener_efecto(nombre)
+
+# FUNCIONES PARA REDIRIGIR AL RETO
+func ir_a_reto():
+	detener_todos_los_efectos()   #corta los sonidos activos
+	get_tree().change_scene_to_file(ESCENA_RETO) #carga la escena del reto
+	
+func terminar_reto(superado: bool):
+	if superado and reto_actual not in retos_superados:  # si ganó y no estaba guardado
+		retos_superados.append(reto_actual) 			# lo guarda
+	reto_actual = ""									# limpia el reto actual
+	ir_a_exploracion()									# vuelve a la calle normal

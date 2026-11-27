@@ -843,6 +843,17 @@ func _process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="Gradient" id="Gradient_as8tl"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gs08a"]
+gradient = SubResource("Gradient_as8tl")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="Aurelio" type="CharacterBody2D" unique_id=634055156]
 script = ExtResource("1_88d5g")
 
@@ -863,3 +874,10 @@ shape = SubResource("RectangleShape2D_gs08a")
 libraries/ = SubResource("AnimationLibrary_0hol4")
 autoplay = &"idle"
 script = SubResource("GDScript_ueqjc")
+
+[node name="Linterna" type="PointLight2D" parent="." unique_id=693978644]
+enabled = false
+color = Color(1, 0.9019608, 0.627451, 1)
+energy = 1.2
+texture = SubResource("GradientTexture2D_gs08a")
+texture_scale = 1.25
