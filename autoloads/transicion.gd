@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 # texto: mensaje opcional mientras la pantalla esta en negro
-func cambiar_escena(ruta: String, texto: String = "") -> void:
+func cambiar_escena(ruta: String, texto: String = "", duracion: float = DURACION) -> void:
 	if _ocupado:
 		return
 	_ocupado = true
@@ -41,9 +41,10 @@ func cambiar_escena(ruta: String, texto: String = "") -> void:
 
 	# Fundido a negro
 	var t := create_tween()
-	t.tween_property(_rect, "modulate:a", 1.0, DURACION)
+	t.tween_property(_rect, "modulate:a", 1.0, duracion)
 	await t.finished
 
+	Estado.detener_todos_los_efectos()
 	get_tree().change_scene_to_file(ruta)
 	await get_tree().process_frame
 	await get_tree().process_frame

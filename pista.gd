@@ -42,12 +42,13 @@ func _unhandled_input(event):
 		
 		# 1 pista nueva cuesta 1PA; las que ya estan examindas no cuestan
 		if esNueva:
-			if not Estado.gastar_pa(costo):
+			if not Estado.tiene_pa(costo):
 				print("Sin puntos de acción")
 				return
 			
 			if costo >= 2 and id not in Estado.retos_superados: 
 				print("4. yendo al reto")
+				Estado.interactuo_en_calle = true
 				Estado.reto_actual = id
 				Estado.ir_a_reto()
 				return
@@ -55,6 +56,7 @@ func _unhandled_input(event):
 			Estado.gastar_pa(costo)
 			Estado.registrar_hallazgo(id)
 
+		Estado.interactuo_en_calle = true
 		Estado.registrar_hallazgo(id)
 		
 		$Brillo.hide()
@@ -63,9 +65,3 @@ func _unhandled_input(event):
 		var visor = get_tree().get_first_node_in_group("visor")
 		if visor:
 			visor.mostrar(id)
-			# espera a que el juagador cierre la tarjeta
-			if esNueva and Estado.pa <= 0:
-				await visor.cerrado
-				Estado.terminar_investigacion()
-		elif esNueva and Estado.pa <= 0:
-			Estado.terminar_investigacion()

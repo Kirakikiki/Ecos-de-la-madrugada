@@ -21,6 +21,9 @@
 [ext_resource type="Script" uid="uid://dbwsyw4h32l0r" path="res://hub.gd" id="20_h5dtr"]
 [ext_resource type="AudioStream" uid="uid://fwrh5acyxbwo" path="res://audio/sonido_llamada.mp3" id="20_p30gs"]
 [ext_resource type="Shader" uid="uid://bse6k6rgrjj2r" path="res://radio.gdshader" id="21_h5dtr"]
+[ext_resource type="Texture2D" path="res://assets/cabina/nube_pensamiento.png" id="22_nube"]
+[ext_resource type="Texture2D" uid="uid://bj0rxhc1yysx0" path="res://Personajes/Sprits/Aurelio/right.png" id="23_aurelio_right"]
+[ext_resource type="Texture2D" path="res://assets/cabina/ventana_frente.png" id="24_ventana_frente"]
 
 [sub_resource type="Image" id="Image_ge2qh"]
 data = {
@@ -707,6 +710,23 @@ scale = Vector2(0.25218025, 0.2552083)
 texture = ExtResource("1_qxe27")
 centered = false
 
+[node name="LocutorVentana" type="Sprite2D" parent="." unique_id=1849203117]
+visible = false
+modulate = Color(0.72, 0.78, 0.86, 0.94)
+texture_filter = 1
+position = Vector2(77.5, 53.6)
+scale = Vector2(0.129, 0.129)
+texture = ExtResource("23_aurelio_right")
+hframes = 3
+vframes = 4
+frame = 1
+
+[node name="VentanaFrente" type="Sprite2D" parent="." unique_id=1849203118]
+position = Vector2(52.479656, -12)
+scale = Vector2(0.25218025, 0.2552083)
+texture = ExtResource("24_ventana_frente")
+centered = false
+
 [node name="Lampara" type="PointLight2D" parent="." unique_id=662845825]
 position = Vector2(172.25002, 51.627922)
 scale = Vector2(2.0718749, 2.1441855)
@@ -772,6 +792,33 @@ offset_right = 193.0
 offset_bottom = 88.16217
 scale = Vector2(1, 1.4799994)
 flat = true
+
+[node name="NubePensamiento" type="TextureRect" parent="Interfaz" unique_id=1849203115]
+visible = false
+texture_filter = 2
+offset_left = 224.0
+offset_top = 6.0
+offset_right = 320.0
+offset_bottom = 94.0
+pivot_offset = Vector2(36, 78)
+mouse_filter = 2
+texture = ExtResource("22_nube")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Texto" type="Label" parent="Interfaz/NubePensamiento" unique_id=1849203116]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = 147.0
+offset_bottom = 81.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/line_spacing = -1
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Aviso" type="AnimatedSprite2D" parent="." unique_id=2141529137]
 position = Vector2(70, 21.143301)
