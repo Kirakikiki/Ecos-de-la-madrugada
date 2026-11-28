@@ -13,12 +13,24 @@
 [ext_resource type="Script" uid="uid://l0i8mf3ikwuh" path="res://farola.gd" id="6_xqhf4"]
 [ext_resource type="TileSet" uid="uid://rn6ckeph5wcc" path="res://tileset_lampara.tres" id="9_2smnh"]
 [ext_resource type="TileSet" uid="uid://dn0eh0757n34k" path="res://tileset_decoracion.tres" id="11_eoy2j"]
+[ext_resource type="Script" path="res://puerta_radio.gd" id="12_pradio"]
 
 [sub_resource type="Gradient" id="Gradient_t2ctf"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5cwap"]
 gradient = SubResource("Gradient_t2ctf")
 fill_from = Vector2(0.009328358, 0.22574627)
+
+[sub_resource type="Gradient" id="Gradient_radiosign"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_radiosign"]
+gradient = SubResource("Gradient_radiosign")
+width = 160
+height = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgy1v"]
 size = Vector2(9, 377.5)
@@ -31,6 +43,12 @@ size = Vector2(1034, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obptw"]
 size = Vector2(42, 207)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pradio"]
+size = Vector2(26, 22)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pradio"]
+light_mode = 1
 
 [sub_resource type="Image" id="Image_66fvm"]
 data = {
@@ -125,6 +143,12 @@ position = Vector2(278.25003, 62.125004)
 scale = Vector2(0.71093667, 0.3476562)
 texture = SubResource("GradientTexture2D_5cwap")
 
+[node name="LuzLetreroRadio" type="PointLight2D" parent="Edificios" unique_id=1845209311]
+position = Vector2(128, 40)
+color = Color(0.96, 0.78, 0.48, 1)
+energy = 0.45
+texture = SubResource("GradientTexture2D_radiosign")
+
 [node name="DECO" type="TileMapLayer" parent="." unique_id=1558316]
 tile_map_data = PackedByteArray("AAAUAAgAAAAbABQAAAAUAAkAAAAbABUAAAAVAAgAAAAcABQAAAAVAAkAAAAcABUAAAAGAAgAAAAZABUAAAAKAAcAAAANABsAAAAMAAcAAAANABsAABALAAcAAAANABsAAAAJAAgAAAAOABoAAAAJAAcAAAANABoAAAAKAAYAAAAMABsAAAArAAgAAAAYABUAAAAOAAYAAAAYAAwAAAAOAAcAAAAYAA0AAAAPAAUAAAAZAAsAAAAPAAYAAAAZAAwAAAAPAAcAAAAZAA0AAAAQAAUAAAAaAAsAAAAQAAYAAAAaAAwAAAAQAAcAAAAaAA0AAAAOAAgAAAAaABIAABAPAAgAAAAZABIAABAMAAwAAAAYABIAAAAGAA8AAAAbABMAAAAYAAoAAAAaAA4AACAoAA4AAAAYABAAAAAmAAkAAAAbAAwAAAAmAAoAAAAbAA0AAAAnAAkAAAAcAAwAAAAnAAoAAAAcAA0AAAAoAAkAAAAdAAwAAAAoAAoAAAAdAA0AAAApAAoAAAAcAA8AAAApAAkAAAAcAA8AAAAqAAoAAAAaABIAAAAqAAkAAAAcAA8AAAApAAgAAAAcABEAAAAqAAgAAAAcABEAAAAnAAcAAAAaABQAAAAnAAgAAAAaABUAAAAmAAgAAAAaABUAAAAmAAcAAAAbABAAAAAlAAgAAAAbABEAAAAhAAwAAAAYABIAAAA=")
 tile_set = ExtResource("5_mqauh")
@@ -148,10 +172,34 @@ position = Vector2(938, 111)
 shape = SubResource("RectangleShape2D_obptw")
 
 [node name="Aurelio" parent="." unique_id=634055156 instance=ExtResource("4_2io2x")]
-position = Vector2(13, 144)
+position = Vector2(127, 146)
 scale = Vector2(0.3, 0.3)
 
 [node name="Puertas" type="Node2D" parent="." unique_id=2104499015]
+
+[node name="PuertaRadio" type="Area2D" parent="Puertas" unique_id=1948273615]
+position = Vector2(127, 142)
+script = ExtResource("12_pradio")
+
+[node name="Colision" type="CollisionShape2D" parent="Puertas/PuertaRadio" unique_id=1948273616]
+shape = SubResource("RectangleShape2D_pradio")
+
+[node name="Aviso" type="Label" parent="Puertas/PuertaRadio" unique_id=1948273617]
+visible = false
+z_index = 20
+material = SubResource("CanvasItemMaterial_pradio")
+offset_left = -56.0
+offset_top = -28.0
+offset_right = 168.0
+offset_bottom = -2.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.08, 0.95)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 10
+text = "[E] Entrar"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Lampara" type="TileMapLayer" parent="." unique_id=1161285909]
 position = Vector2(-267, -142)

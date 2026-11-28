@@ -34,6 +34,8 @@ var marta_confrontada: bool = false
 var tutorial_visto = false
 var pa = PA_MAXIMO
 var hallazgos: Array[String] = []    # pistas ya examinadas en la calle
+var interactuo_en_calle: bool = false
+var regresando_de_calle: bool = false
 
 # VARIABLES PARA EL RETO 
 var reto_actual : String = "" # id de la pista que se intenta conseguir
@@ -57,6 +59,8 @@ func reiniciar_partida() -> void:
 	autoridades_avisadas = false
 	marta_confrontada = false
 	hallazgos.clear()
+	interactuo_en_calle = false
+	regresando_de_calle = false
 	acusado_elegido = ""
 	reiniciar_pa()
 	detener_todos_los_efectos()
@@ -81,11 +85,16 @@ func ir_a_cabina():
 	detener_todos_los_efectos()
 	Transicion.cambiar_escena(ESCENA_CABINA, "Noche %d" % noche)
 
-func ir_a_exploracion():
-	detener_todos_los_efectos()
-	Transicion.cambiar_escena(ESCENA_EXPLORACION)
+func ir_a_exploracion(duracion: float = 0.6, reiniciar_interaccion: bool = true):
+	if reiniciar_interaccion:
+		interactuo_en_calle = false
+	if duracion <= 0.6:
+		detener_todos_los_efectos()
+	Transicion.cambiar_escena(ESCENA_EXPLORACION, "", duracion)
 
 func terminar_investigacion():
+	interactuo_en_calle = false
+	regresando_de_calle = true
 	reiniciar_pa()
 	siguiente_noche()
 	ir_a_cabina()
@@ -245,4 +254,5 @@ func terminar_reto(superado: bool):
 	if superado and reto_actual not in retos_superados:  # si ganó y no estaba guardado
 		retos_superados.append(reto_actual) 			# lo guarda
 	reto_actual = ""									# limpia el reto actual
-	ir_a_exploracion()									# vuelve a la calle normal
+	interactuo_en_calle = true
+	ir_a_exploracion(0.6, false)						# vuelve a la calle normal

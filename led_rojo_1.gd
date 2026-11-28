@@ -49,8 +49,21 @@ func crear_textura() -> void:
 	
 	set_deferred("texture", nueva_textura)
 	
+func encender() -> void:
+	enabled = true
+	if parpadea:
+		parpadear()
+	else:
+		energy = energia_encendida
+
+func apagar() -> void:
+	if tween_parpadeo and tween_parpadeo.is_valid():
+		tween_parpadeo.kill()
+	energy = 0.0
+	enabled = false
+
 func parpadear() -> void:
-	if tween_parpadeo and tween_parpadeo.is_running():
+	if tween_parpadeo and tween_parpadeo.is_valid():
 		tween_parpadeo.kill()
 		
 	tween_parpadeo = create_tween().set_loops()
